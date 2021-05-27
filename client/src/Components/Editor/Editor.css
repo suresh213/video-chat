@@ -1,0 +1,83 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  background-color: #f3f3f3;
+  margin: 0;
+}
+
+.head {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.head h4 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.head .document-options {
+  display: flex;
+  justify-content: flex-start;
+  grid-column-gap: 50px;
+  padding: 10px 0;
+}
+
+.head .document-options h5 {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.editor .ql-editor {
+  width: 8.5in;
+  min-height: 11in;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  padding: 1in;
+  margin: 1rem;
+  background-color: white;
+}
+
+.editor .ql-container.ql-snow {
+  display: flex;
+  justify-content: center;
+  border: none;
+}
+
+.editor .ql-toolbar.ql-snow {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #f3f3f3;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+@page {
+  margin: 1in;
+}
+
+@media print {
+  body {
+    background: none;
+  }
+  .head {
+    display: none;
+  }
+  .editor .ql-editor {
+    width: 6.5in;
+    height: 9in;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    align-self: flex-start;
+  }
+  .editor .ql-toolbar.ql-snow {
+    display: none;
+  }
+}
