@@ -1,0 +1,26 @@
+.flex-div {
+  display: flex;
+  height: 100vh;
+  .left {
+    width: 30%;
+    background-color: grey;
+    .video-div {
+      display: block;
+      text-align: center;
+      margin-top: 8rem;
+      grid-row-gap: 1rem;
+      video {
+        margin-top: 1rem;
+        // width: 55%;
+        // height: 23vh;
+        border: 2px solid rgb(232, 232, 232);
+      }
+    }
+  }
+  .right {
+    width: 70%;
+    background-color: rgb(12, 102, 172);
+    .editor-div {
+    }
+  }
+}

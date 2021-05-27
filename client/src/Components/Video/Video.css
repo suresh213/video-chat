@@ -1,0 +1,26 @@
+.flex-div {
+  display: flex;
+  height: 100vh;
+}
+
+.flex-div .left {
+  width: 30%;
+  background-color: grey;
+}
+
+.flex-div .left .video-div {
+  display: block;
+  text-align: center;
+  margin-top: 8rem;
+  grid-row-gap: 1rem;
+}
+
+.flex-div .left .video-div video {
+  margin-top: 1rem;
+  border: 2px solid #e8e8e8;
+}
+
+.flex-div .right {
+  width: 70%;
+  background-color: #0c66ac;
+}
