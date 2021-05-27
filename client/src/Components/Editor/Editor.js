@@ -1,16 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import 'quill/dist/quill.snow.css';
 import Quill from 'quill';
 import './Editor.css';
 import { io } from 'socket.io-client';
-import { CLIENT_ENDPOINT, SERVER_ENDPOINT } from '../constants';
+// import { CLIENT_ENDPOINT, SERVER_ENDPOINT } from '../constants';
 import { useParams, useHistory } from 'react-router-dom';
 import saveAs from 'file-saver';
 import { pdfExporter } from 'quill-to-pdf';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { v4 as uuidV4 } from 'uuid';
 import { Button, message } from 'antd';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import { SocketContext } from '../../SocketContext';
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
@@ -29,15 +30,31 @@ var toolbarOptions = [
 ];
 
 const Editor = () => {
+  const {
+    // socketObj,
+    me,
+    call,
+    callAccepted,
+    callEnded,
+    // name,
+    // setName,
+    myVideo,
+    userVideo,
+    stream,
+    answerCall,
+    callUser,
+    endCall,
+  } = useContext(SocketContext);
+
   const history = useHistory();
-  const { id: documentId } = useParams();
+  const { id: documentId } = me;
   const [name, setName] = useState('Untitled');
   const [isEdit, setIsEdit] = useState(false);
   const [socket, setSocket] = useState(null);
   const [quill, setQuill] = useState(null);
-
+  console.log(useContext(SocketContext));
   useEffect(() => {
-    const s = io(SERVER_ENDPOINT);
+    const s = io('http://localhost:5000');
     setSocket(s);
     return () => {
       if (socket) socket.disconnect();
@@ -49,6 +66,7 @@ const Editor = () => {
     socket.emit('get-document', documentId);
 
     socket.once('load-document', (document) => {
+      console.log(document);
       quill.setContents(document);
       quill.enable();
     });
@@ -118,7 +136,7 @@ const Editor = () => {
   }, []);
 
   const downloadPdf = async () => {
-    toast.info('downlading');
+    // toast.info('downlading');
     const delta = quill.getContents();
     const pdfAsBlob = await pdfExporter.generatePdf(delta);
     saveAs(pdfAsBlob, `${name}.pdf`);
@@ -173,14 +191,14 @@ const Editor = () => {
           </CopyToClipboard>
         </div>
       </div> */}
-      <CopyToClipboard text={`${CLIENT_ENDPOINT}/document/${documentId}`}>
+      {/* <CopyToClipboard text={`${CLIENT_ENDPOINT}/document/${documentId}`}>
         <Button
           type='primary'
           onClick={() => message.success('URL Copied to clipboard')}
         >
           Share
         </Button>
-      </CopyToClipboard>
+      </CopyToClipboard> */}
       <div className='editor' ref={editorRef}></div>
     </>
   );

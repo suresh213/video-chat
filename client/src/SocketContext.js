@@ -25,7 +25,9 @@ const ContextProvider = ({ children }) => {
         myVideo.current.srcObject = res;
       });
 
-    socket.on('me', (id) => setMe(id));
+    socket.on('me', (id) => {
+      setMe(id);
+    });
     socket.on('calluser', ({ from, name: callerName, signal }) => {
       // console.log({ from, callerName, signal, isRecievedCall: true });
       setCall({ from, callerName, signal, isRecievedCall: true });

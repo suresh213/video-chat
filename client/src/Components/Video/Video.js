@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { SocketContext } from '../../SocketContext';
+import Editor from '../Editor/Editor';
 import './Video.css';
 const Video = () => {
   const {
@@ -43,7 +44,9 @@ const Video = () => {
         </div>
       </div>
       <div className='right'>
-        <div className='editor-div'></div>
+        <div className='editor-div'>
+          <Editor />
+        </div>
       </div>
     </div>
   );
