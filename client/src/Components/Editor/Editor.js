@@ -56,6 +56,7 @@ const Editor = () => {
   useEffect(() => {
     const s = io('http://localhost:5000');
     setSocket(s);
+
     return () => {
       if (socket) socket.disconnect();
     };
@@ -64,13 +65,13 @@ const Editor = () => {
   useEffect(() => {
     if (!socket || !quill) return;
     socket.emit('get-document', documentId);
-
+// documentId=me;
     socket.once('load-document', (document) => {
       console.log(document);
       quill.setContents(document);
       quill.enable();
     });
-  }, [socket, quill, documentId]);
+  }, [socket, quill]);
 
   useEffect(() => {
     if (!socket || !quill) return;

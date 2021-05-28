@@ -7,9 +7,7 @@ function App() {
   return (
     <ContextProvider>
       <Video />
-      <Options>
-        <Notification />
-      </Options>
+      
     </ContextProvider>
   );
 }

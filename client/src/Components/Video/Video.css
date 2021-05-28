@@ -10,8 +10,8 @@
 
 .flex-div .left .video-div {
   display: block;
+  align-items: center;
   text-align: center;
-  margin-top: 8rem;
   grid-row-gap: 1rem;
 }
 

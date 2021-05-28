@@ -1,7 +1,14 @@
 import React, { useContext, useState } from 'react';
 import { SocketContext } from '../../SocketContext';
 import Editor from '../Editor/Editor';
+import Options from '../Options/Options';
+import Notification from '../Notification/Notification';
+// import VideocamIcon from '@material-ui/icons/Videocam';
+// import VideocamOffIcon from '@material-ui/icons/VideocamOff';
+// import MicIcon from '@material-ui/icons/Mic';
+// import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
+
 const Video = () => {
   const {
     me,
@@ -23,14 +30,17 @@ const Video = () => {
       <div className='left'>
         <div className='video-div'>
           {' '}
-          <video
-            width='250'
-            height='140'
-            src=''
-            ref={myVideo}
-            autoPlay
-            muted
-          ></video>
+          {stream && (
+            <video
+              width='250'
+              height='140'
+              src=''
+              ref={myVideo}
+              autoPlay
+              muted
+            ></video>
+          )}
+          {console.log(callEnded)}
           {callAccepted && !callEnded && (
             <video
               width='250'
@@ -41,13 +51,22 @@ const Video = () => {
               muted
             ></video>
           )}
+          <div className='options'>
+            <Options/>
+          </div>
+          <div className='bar'>
+            {/* <VideocamIcon />
+            <VideocamOffIcon />
+            <MicIcon />
+            <MicOffIcon /> */}
+          </div>
         </div>
       </div>
-      <div className='right'>
+      {/* <div className='right'>
         <div className='editor-div'>
           <Editor />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

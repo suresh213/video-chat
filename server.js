@@ -14,10 +14,6 @@ app.use(cors());
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
 
-  socket.on('disconnect', () => {
-    socket.broadcast.emit('callended');
-  });
-
   socket.on('calluser', ({ userToCall, from, name, signal }) => {
     io.to(userToCall).emit('calluser', { signal, from, name });
   });
@@ -26,9 +22,9 @@ io.on('connection', (socket) => {
     io.to(data.to).emit('callaccepted', data.signal);
   });
   socket.on('get-document', (documentId) => {
-    const documentData = 'hello';
+    const documentData = documentId;
     socket.join(documentId);
-    console.log(documentId)
+    console.log(documentId);
     socket.emit('load-document', documentData);
 
     socket.on('change-name', (name) => {
@@ -36,9 +32,12 @@ io.on('connection', (socket) => {
       socket.broadcast.to(documentId).emit('recieve-name-change', name);
     });
     socket.on('send-changes', (delta) => {
-      //   console.log(delta);
+        console.log(delta);
       socket.broadcast.to(documentId).emit('recieve-changes', delta);
     });
+  });
+  socket.on('disconnect', () => {
+    socket.broadcast.emit('callended');
   });
 });
 

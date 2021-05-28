@@ -29,6 +29,11 @@ body {
   }
 }
 
+.editor {
+  height: 100vh;
+  overflow-y: scroll;
+}
+
 .editor .ql-editor {
   width: 8.5in;
   min-height: 11in;

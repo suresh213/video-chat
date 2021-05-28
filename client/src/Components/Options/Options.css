@@ -1,0 +1,14 @@
+.options {
+  background-color: white;
+  width: 60%;
+  height: 20vh;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.options input {
+  border-radius: 10px;
+  border: 1px solid #9e9e9e;
+  outline: none;
+  padding: 10px;
+}
