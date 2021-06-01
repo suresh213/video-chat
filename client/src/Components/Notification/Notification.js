@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { SocketContext } from '../../SocketContext';
 import { Input, Button, Tooltip, Modal, message } from 'antd';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 const Notification = () => {
   const {

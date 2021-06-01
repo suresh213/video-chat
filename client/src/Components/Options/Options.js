@@ -2,8 +2,14 @@ import React, { useContext, useState, useEffect } from 'react';
 import { SocketContext } from '../../SocketContext';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import './Options.css';
-import { Input, Button, Tooltip, Modal, message } from 'antd';
+import 'antd/dist/antd.css';
 
+import { Input, Button, Tooltip, Modal, message } from 'antd';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
 const Options = ({ children }) => {
   const [callId, setCallId] = useState('');
   const {
@@ -22,25 +28,25 @@ const Options = ({ children }) => {
   } = useContext(SocketContext);
   const [open, setOpen] = useState(true);
 
-  // useEffect(() => {
-  //   if (call.isRecievedCall && !callAccepted) {
-  //     setOpen(true);
-  //   } else {
-  //     setOpen(false);
-  //   }
-  //   console.log(open);
-  // }, [call.isRecievedCall]);
+  useEffect(() => {
+    if (call.isRecievedCall && !callAccepted) {
+      console.log('someone is calling..');
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [call.isRecievedCall]);
 
   return (
     <>
       <div className='options'>
         <CopyToClipboard
           text={me}
-          onClick={() => {
-            message.success('Copied');
+          onCopy={() => {
+            message.success('Id Copied');
           }}
         >
-          <button>Share your Id</button>
+          <Button type='primary'>Share your Id</Button>
         </CopyToClipboard>
         <input
           type='text'
@@ -50,11 +56,15 @@ const Options = ({ children }) => {
         />
 
         {callAccepted && !callEnded ? (
-          <button onClick={() => endCall()}>End</button>
+          <Button type='primary' onClick={() => endCall()}>
+            End
+          </Button>
         ) : (
-          <button onClick={() => callUser(callId)}>Join</button>
+          <Button type='primary' onClick={() => callUser(callId)}>
+            Join
+          </Button>
         )}
-        <Modal
+        {/* <Modal
           title='Incoming Call'
           visible={open}
           onOk={() => setOpen(false)}
@@ -71,7 +81,30 @@ const Options = ({ children }) => {
             Answer
           </button>
           <button onClick={() => setOpen(false)}>Decline</button>
-        </Modal>
+        </Modal> */}
+        <Dialog
+          open={open}
+          // onClose={handleClose}
+          // PaperComponent={PaperComponent}
+          aria-labelledby='draggable-dialog-title'
+        >
+          <DialogTitle>hi</DialogTitle>
+          <DialogContent>
+            <p>{call.from} wants to join in this call</p>
+            <Button
+              type='primary'
+              onClick={() => {
+                answerCall();
+                setOpen(false);
+              }}
+            >
+              Answer
+            </Button>
+            <Button type='primary' onClick={() => setOpen(false)}>
+              Decline
+            </Button>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );

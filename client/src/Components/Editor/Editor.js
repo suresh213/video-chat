@@ -44,17 +44,26 @@ const Editor = () => {
     answerCall,
     callUser,
     endCall,
+    otherUser,
+    documentId,
   } = useContext(SocketContext);
 
   const history = useHistory();
-  const { id: documentId } = me;
+  // const [documentId, setDocumentId] = useState(null);
   const [name, setName] = useState('Untitled');
   const [isEdit, setIsEdit] = useState(false);
   const [socket, setSocket] = useState(null);
   const [quill, setQuill] = useState(null);
   console.log(useContext(SocketContext));
+
+  // useEffect(() => {
+  //   console.log('otehr use accepted', otherUser);
+  //   setDocumentId(otherUser);
+  // }, [callAccepted]);
+
   useEffect(() => {
     const s = io('http://localhost:5000');
+    console.log(s);
     setSocket(s);
 
     return () => {
@@ -63,22 +72,32 @@ const Editor = () => {
   }, []);
 
   useEffect(() => {
-    if (!socket || !quill) return;
+    console.log(documentId);
+    if (!socket || !quill || !documentId) return;
+
     socket.emit('get-document', documentId);
-// documentId=me;
+    // documentId=me;
     socket.once('load-document', (document) => {
       console.log(document);
-      quill.setContents(document);
+      quill.setText(document);
       quill.enable();
     });
   }, [socket, quill]);
 
   useEffect(() => {
+    console.log(socket);
+    console.log('socket is vhanging');
+  }, [socket]);
+  useEffect(() => {
+    console.log('qill is vhanging');
+  }, [quill]);
+  useEffect(() => {
     if (!socket || !quill) return;
     const handler = (delta, oldDelta, source) => {
+      console.log(source)
       if (source !== 'user') return;
-      // console.log(delta);
-      socket.emit('send-changes', delta);
+      console.log(delta);
+      socket.emit('send-changes', delta, documentId);
     };
 
     quill.on('text-change', handler);
@@ -106,6 +125,7 @@ const Editor = () => {
   }, [socket]);
 
   useEffect(() => {
+    console.log(socket, quill);
     if (!socket || !quill) return;
     const handler = (delta) => {
       console.log(delta);
@@ -131,8 +151,8 @@ const Editor = () => {
         toolbar: toolbarOptions,
       },
     });
-    q.setText('Loading...');
-    q.disable();
+    // q.setText('Loading...');
+    // q.disable();
     setQuill(q);
   }, []);
 

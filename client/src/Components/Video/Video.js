@@ -3,10 +3,10 @@ import { SocketContext } from '../../SocketContext';
 import Editor from '../Editor/Editor';
 import Options from '../Options/Options';
 import Notification from '../Notification/Notification';
-// import VideocamIcon from '@material-ui/icons/Videocam';
-// import VideocamOffIcon from '@material-ui/icons/VideocamOff';
-// import MicIcon from '@material-ui/icons/Mic';
-// import MicOffIcon from '@material-ui/icons/MicOff';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import VideocamOffIcon from '@material-ui/icons/VideocamOff';
+import MicIcon from '@material-ui/icons/Mic';
+import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
 
 const Video = () => {
@@ -40,7 +40,6 @@ const Video = () => {
               muted
             ></video>
           )}
-          {console.log(callEnded)}
           {callAccepted && !callEnded && (
             <video
               width='250'
@@ -52,21 +51,23 @@ const Video = () => {
             ></video>
           )}
           <div className='options'>
-            <Options/>
+            <Options />
           </div>
           <div className='bar'>
-            {/* <VideocamIcon />
+            <VideocamIcon />
             <VideocamOffIcon />
             <MicIcon />
-            <MicOffIcon /> */}
+            <MicOffIcon />
           </div>
         </div>
       </div>
-      {/* <div className='right'>
-        <div className='editor-div'>
-          <Editor />
+      {callAccepted && !callEnded && (
+        <div className='right'>
+          <div className='editor-div'>
+            <Editor />
+          </div>
         </div>
-      </div> */}
+      )}
     </div>
   );
 };
