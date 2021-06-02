@@ -5,16 +5,33 @@
     width: 30%;
     background-color: grey;
     .video-div {
-      display: block;
-      align-items: center;
-      text-align: center;
+      // display: block;
+      // align-items: center;
+      // text-align: center;
       // margin-top: 8rem;
       grid-row-gap: 1rem;
-      video {
-        margin-top: 1rem;
-        // width: 55%;
-        // height: 23vh;
-        border: 2px solid rgb(232, 232, 232);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .video-frames {
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+
+        margin: auto;
+        .video-frame {
+          // border: 1px solid blue;
+          svg {
+            position: relative;
+            left: 10%;
+          }
+          video {
+            // margin-top: 1rem;
+            // width: 55%;
+            // height: 23vh;
+            border: 2px solid rgb(232, 232, 232);
+          }
+        }
       }
     }
   }
@@ -22,6 +39,37 @@
     width: 70%;
     background-color: rgb(12, 102, 172);
     .editor-div {
+    }
+  }
+}
+.hide-editor {
+  display: block;
+  .left {
+    width: 100%;
+    background-color: grey;
+    height: 100%;
+    .video-div {
+      height: 100%;
+      .video-frames {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        height: 100%;
+        .video-frame {
+          svg {
+            position: relative;
+            left: 5%;
+          }
+          width: 70%;
+          video {
+            // margin-top: 1rem;
+            width: 70%;
+            height: 50%;
+            border: 2px solid rgb(232, 232, 232);
+          }
+        }
+      }
     }
   }
 }

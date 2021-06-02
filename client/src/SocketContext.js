@@ -3,10 +3,14 @@ import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { v4 } from 'uuid';
 
+import 'antd/dist/antd.css';
+import { Input, Button, Tooltip, Modal, message } from 'antd';
 const SocketContext = createContext();
+
 const socket = io('http://localhost:5000');
 
 const ContextProvider = ({ children }) => {
+  const [socketState, setSocketState] = useState(socket);
   const [me, setMe] = useState('');
   const [call, setCall] = useState({});
   const [stream, setStream] = useState(null);
@@ -15,6 +19,11 @@ const ContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [otherUser, setOtherUser] = useState(null);
   const [documentId, setDocumentId] = useState(v4());
+  const [myVideoStatus, setMyVideoStatus] = useState(true);
+  const [userVideoStatus, setUserVideoStatus] = useState(false);
+  const [myMicStatus, setMyMicStatus] = useState(true);
+  const [userMicStatus, setUserMicStatus] = useState(false);
+  const [showEditor, setShowEditor] = useState(false);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
@@ -24,6 +33,8 @@ const ContextProvider = ({ children }) => {
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
         console.log(res);
+
+        // res.getVideoTracks()[0].enabled = false;
         setStream(res);
         console.log(myVideo);
         myVideo.current.srcObject = res;
@@ -43,6 +54,33 @@ const ContextProvider = ({ children }) => {
         documentId,
       });
     });
+
+    socket.on('updateUserMedia', ({ type, mediaStatus }) => {
+      console.log({ type, mediaStatus });
+      if (!type || !mediaStatus || !mediaStatus.length) {
+        return;
+      }
+      if (type === 'video') {
+        message.info(`User turned ${mediaStatus[0] ? 'on' : 'off'} his video`);
+        setUserVideoStatus(mediaStatus[0]);
+        return;
+      }
+      if (type === 'audio') {
+        message.info(`User ${mediaStatus[0] ? 'unmuted' : 'muted'} his mic`);
+        setUserMicStatus(mediaStatus[0]);
+        return;
+      }
+      setUserMicStatus(mediaStatus[0]);
+      setUserVideoStatus(mediaStatus[1]);
+    });
+
+    // const handler = (delta) => {
+    //   console.log(delta);
+    //   // quill.updateContents(delta);
+    // };
+
+    // socket.on('recieve-changes', handler);
+
     socket.on('callended', () => {
       setCallEnded(true);
     });
@@ -51,9 +89,9 @@ const ContextProvider = ({ children }) => {
   const answerCall = () => {
     setCallAccepted(true);
     setOtherUser(call.from);
-    console.log(documentId);
+    // console.log(documentId);
     setDocumentId(call.documentId);
-    console.log(documentId);
+    // console.log(documentId);
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
     peer.on('signal', (data) => {
@@ -63,11 +101,14 @@ const ContextProvider = ({ children }) => {
         signal: data,
         to: call.from,
         documentId: call.documentId,
+        type: 'both',
+        mediaStatus: [myMicStatus, myVideoStatus],
       });
     });
+
     peer.on('stream', (currentStream) => {
       console.log(userVideo);
-      userVideo.current.srcObject = currentStream;
+      if (userVideo.current) userVideo.current.srcObject = currentStream;
     });
     peer.signal(call.signal);
     connectionRef.current = peer;
@@ -87,11 +128,18 @@ const ContextProvider = ({ children }) => {
       });
     });
     peer.on('stream', (currentStream) => {
-      console.log(currentStream);
-      userVideo.current.srcObject = currentStream;
+      // console.log(currentStream);
+      if (userVideo.current) userVideo.current.srcObject = currentStream;
     });
 
     socket.on('callaccepted', (signal) => {
+      socket.emit('updateMyMedia', {
+        data: {
+          type: 'both',
+          mediaStatus: [myMicStatus, myVideoStatus],
+        },
+        userToUpdate: id,
+      });
       setCallAccepted(true);
       peer.signal(signal);
     });
@@ -103,6 +151,27 @@ const ContextProvider = ({ children }) => {
     setCallEnded(true);
     connectionRef.current.destroy();
     window.location.reload();
+  };
+
+  const updateVideoStatus = () => {
+    console.log('video staus');
+    socket.emit('updateMyMedia', {
+      data: { type: 'video', mediaStatus: [!myVideoStatus] },
+      userToUpdate: otherUser,
+    });
+    stream.getVideoTracks()[0].enabled = !myVideoStatus;
+    setMyVideoStatus(!myVideoStatus);
+    console.log(stream.getVideoTracks()[0]);
+  };
+
+  const updateMicStatus = () => {
+    socket.emit('updateMyMedia', {
+      data: { type: 'audio', mediaStatus: [!myMicStatus] },
+      userToUpdate: otherUser,
+    });
+    stream.getAudioTracks()[0].enabled = !myMicStatus;
+    setMyMicStatus(!myMicStatus);
+    console.log(stream.getAudioTracks()[0]);
   };
 
   return (
@@ -122,6 +191,16 @@ const ContextProvider = ({ children }) => {
         endCall,
         otherUser,
         documentId,
+        myVideoStatus,
+        myMicStatus,
+        userVideoStatus,
+        userMicStatus,
+        setUserVideoStatus,
+        updateMicStatus,
+        updateVideoStatus,
+        setShowEditor,
+        showEditor,
+        socketState,
       }}
     >
       {children}

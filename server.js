@@ -14,28 +14,33 @@ var clients = [];
 io.on('connection', (socket) => {
   socket.emit('me', socket.id);
 
+  socket.on('updateMyMedia', (data) => {
+    console.log(data);
+    io.to(data.userToUpdate).emit('updateUserMedia', data.data);
+  });
+
   socket.on('calluser', ({ userToCall, from, name, signal, documentId }) => {
-    console.log('calling user', documentId);
-    socket.join(documentId);
-    clients.push(socket.id);
-    console.log(clients);
     io.to(userToCall).emit('calluser', { signal, from, name, documentId });
   });
 
   socket.on('answercall', (data) => {
-    console.log('ansering user', data.documentId);
     socket.join(data.documentId);
-    clients.push(socket.id);
-    console.log(clients);
+    console.log(data);
+    io.to(data.to).emit('updateUserMedia', {
+      type: data.type,
+      mediaStatus: data.mediaStatus,
+    });
     io.to(data.to).emit('callaccepted', data.signal);
   });
 
   socket.on('send-changes', (delta, documentId) => {
-    console.log(delta, documentId);
-    var clients_in_the_room = io.sockets.adapter.rooms;
-    console.log(clients_in_the_room);
-    socket.to(documentId).emit('recieve-changes', delta);
+    console.log(documentId)
+    io.to(documentId).emit('recieve-changes', delta);
   });
+
+  socket.on('send-message',data=>{
+    io.to(data.userToSend).emit('recieve-message',data.data)
+  })
 
   // socket.on('get-document', (documentId) => {
   //   console.log(documentId);
@@ -63,5 +68,6 @@ app.get('/', (req, res) => {
 });
 
 server.listen(PORT, () => {
+  // clients = [];
   console.log(`Server is running at port ${PORT}`);
 });

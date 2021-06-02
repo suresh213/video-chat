@@ -45,14 +45,13 @@ const Editor = () => {
     callUser,
     endCall,
     otherUser,
-    documentId,
+    socketState: socket,
   } = useContext(SocketContext);
 
   const history = useHistory();
   // const [documentId, setDocumentId] = useState(null);
   const [name, setName] = useState('Untitled');
   const [isEdit, setIsEdit] = useState(false);
-  const [socket, setSocket] = useState(null);
   const [quill, setQuill] = useState(null);
   console.log(useContext(SocketContext));
 
@@ -61,43 +60,46 @@ const Editor = () => {
   //   setDocumentId(otherUser);
   // }, [callAccepted]);
 
-  useEffect(() => {
-    const s = io('http://localhost:5000');
-    console.log(s);
-    setSocket(s);
+  // useEffect(() => {
+  //   const s = io('http://localhost:5000');
+  //   console.log(s);
+  //   setSocket(s);
 
-    return () => {
-      if (socket) socket.disconnect();
-    };
-  }, []);
+  //   return () => {
+  //     if (socket) socket.disconnect();
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   console.log(documentId);
+  //   if (!socket || !quill || !documentId) return;
+
+  //   socket.emit('get-document', documentId);
+  //   // documentId=me;
+  //   socket.once('load-document', (document) => {
+  //     console.log(document);
+  //     quill.setText(document);
+  //     quill.enable();
+  //   });
+  // }, [socket, quill]);
+
+  // useEffect(() => {
+  //   console.log(socket);
+  //   console.log('socket is vhanging');
+  // }, [socket]);
+
+  // useEffect(() => {
+  //   console.log('qill is vhanging');
+  // }, [quill]);
 
   useEffect(() => {
-    console.log(documentId);
-    if (!socket || !quill || !documentId) return;
-
-    socket.emit('get-document', documentId);
-    // documentId=me;
-    socket.once('load-document', (document) => {
-      console.log(document);
-      quill.setText(document);
-      quill.enable();
-    });
-  }, [socket, quill]);
-
-  useEffect(() => {
-    console.log(socket);
-    console.log('socket is vhanging');
-  }, [socket]);
-  useEffect(() => {
-    console.log('qill is vhanging');
-  }, [quill]);
-  useEffect(() => {
-    if (!socket || !quill) return;
+    console.log(quill);
+    if (!socket || !quill || !otherUser) return;
     const handler = (delta, oldDelta, source) => {
-      console.log(source)
       if (source !== 'user') return;
-      console.log(delta);
-      socket.emit('send-changes', delta, documentId);
+      console.log(otherUser, delta);
+      console.log(quill);
+      socket.emit('send-changes', delta, otherUser);
     };
 
     quill.on('text-change', handler);
@@ -106,23 +108,23 @@ const Editor = () => {
     };
   }, [socket, quill]);
 
-  useEffect(() => {
-    if (!socket) return;
-    socket.emit('change-name', name);
-  }, [isEdit]);
+  // useEffect(() => {
+  //   if (!socket) return;
+  //   socket.emit('change-name', name);
+  // }, [isEdit]);
 
-  useEffect(() => {
-    if (!socket) return;
-    socket.on('recieve-name-change', (name) => {
-      console.log(name);
-      setName(name);
-    });
-    return () => {
-      socket.off('recieve-name-change', (name) => {
-        setName(name);
-      });
-    };
-  }, [socket]);
+  // useEffect(() => {
+  //   if (!socket) return;
+  //   socket.on('recieve-name-change', (name) => {
+  //     console.log(name);
+  //     setName(name);
+  //   });
+  //   return () => {
+  //     socket.off('recieve-name-change', (name) => {
+  //       setName(name);
+  //     });
+  //   };
+  // }, [socket]);
 
   useEffect(() => {
     console.log(socket, quill);
@@ -170,56 +172,6 @@ const Editor = () => {
 
   return (
     <>
-      {/* <div className='head'>
-        <div>
-          <h4>Docs</h4>
-          {!isEdit ? (
-            <p
-              onClick={() => {
-                setIsEdit(!isEdit);
-              }}
-            >
-              {name}
-            </p>
-          ) : (
-            <div>
-              <input
-                type='text'
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-              />
-              <button
-                onClick={() => {
-                  setIsEdit(!isEdit);
-                }}
-              >
-                ok
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div className='document-options'>
-          <button onClick={downloadPdf}>Download</button>
-          <button onClick={openNewDoc}>New</button>
-          <CopyToClipboard text={`${CLIENT_ENDPOINT}/document/${documentId}`}>
-            <Button
-              type='primary'
-              onClick={() => toast.success('URL Copied to clipboard')}
-            >
-              Share
-            </Button>
-          </CopyToClipboard>
-        </div>
-      </div> */}
-      {/* <CopyToClipboard text={`${CLIENT_ENDPOINT}/document/${documentId}`}>
-        <Button
-          type='primary'
-          onClick={() => message.success('URL Copied to clipboard')}
-        >
-          Share
-        </Button>
-      </CopyToClipboard> */}
       <div className='editor' ref={editorRef}></div>
     </>
   );

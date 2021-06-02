@@ -1,14 +1,62 @@
 .options {
   background-color: white;
-  width: 60%;
-  height: 20vh;
+  width: 30%;
+  height: 10vh;
   margin: auto;
-  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0px;
 }
 
-.options input {
+.options button {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  outline: none;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+}
+
+.options .bg-white {
+  background-color: #dddddd;
+}
+
+.options .bg-grey {
+  background-color: #8f8f8f;
+}
+
+.options .red-btn {
+  background-color: #c20505;
+}
+
+.options .red-btn svg {
+  fill: white;
+}
+
+.options .red-btn:hover {
+  background-color: #e44646;
+}
+
+.options-menu {
+  padding: 1rem;
+  display: block;
+}
+
+.options-menu div {
+  padding: 0.5rem;
+}
+
+.options-menu input {
   border-radius: 10px;
   border: 1px solid #9e9e9e;
   outline: none;
   padding: 10px;
+}
+
+.w100 {
+  width: 100%;
 }

@@ -1,13 +1,56 @@
-.options{
-    background-color: white;
-    width: 60%;
-    height: 20vh;
-    margin: auto;
-    border-radius: 10px;
-    input{
-        border-radius:10px ;
-        border: 1px solid rgb(158, 158, 158);
-        outline: none;
-        padding: 10px;
+.options {
+  background-color: white;
+  width: 30%;
+  height: 10vh;
+  margin: auto;
+  //   border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 0px;
+  button {
+    display: flex;
+    align-items: center;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    // &:hover {
+    //   background-color: rgb(221, 221, 221);
+    // }
+  }
+  .bg-white {
+    background-color: rgb(221, 221, 221);
+  }
+  .bg-grey {
+    background-color: rgb(143, 143, 143);
+  }
+  .red-btn {
+    background-color: rgb(194, 5, 5);
+    svg {
+      fill: white;
     }
+    &:hover {
+      background-color: rgb(228, 70, 70);
+    }
+  }
+}
+.options-menu {
+  padding: 1rem;
+  display: block;
+  div {
+    padding: 0.5rem;
+  }
+  input {
+    border-radius: 10px;
+    border: 1px solid rgb(158, 158, 158);
+    outline: none;
+    padding: 10px;
+  }
+}
+.w100{
+    width: 100%;
 }

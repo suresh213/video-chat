@@ -23,45 +23,57 @@ const Video = () => {
     answerCall,
     callUser,
     endCall,
+    myVideoStatus,
+    myMicStatus,
+    userVideoStatus,
+    userMicStatus,
+    updateMicStatus,
+    updateVideoStatus,
+    showEditor,
+    setShowEditor,
   } = useContext(SocketContext);
+
   const [state, setState] = useState();
   return (
-    <div className='flex-div'>
+    <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
         <div className='video-div'>
           {' '}
-          {stream && (
-            <video
-              width='250'
-              height='140'
-              src=''
-              ref={myVideo}
-              autoPlay
-              muted
-            ></video>
-          )}
-          {callAccepted && !callEnded && (
-            <video
-              width='250'
-              height='140'
-              src=''
-              ref={userVideo}
-              autoPlay
-              muted
-            ></video>
-          )}
-          <div className='options'>
-            <Options />
-          </div>
-          <div className='bar'>
-            <VideocamIcon />
-            <VideocamOffIcon />
-            <MicIcon />
-            <MicOffIcon />
+          <div className='video-frames'>
+            {stream && (
+              <div className='video-frame'>
+                {myMicStatus ? <MicIcon /> : <MicOffIcon />}
+                <video
+                  width='250'
+                  height='140'
+                  src=''
+                  ref={myVideo}
+                  autoPlay
+                  muted
+                ></video>
+              </div>
+            )}
+            {console.log('user mic ', userMicStatus)}
+            {callAccepted && !callEnded && (
+              <div className='video-frame'>
+                {userMicStatus ? <MicIcon /> : <MicOffIcon />}
+                <video
+                  width='250'
+                  height='140'
+                  src=''
+                  ref={userVideo}
+                  autoPlay
+                  muted
+                ></video>
+              </div>
+            )}
           </div>
         </div>
+        <div className='bar'>
+          <Options />
+        </div>
       </div>
-      {callAccepted && !callEnded && (
+      {showEditor && (
         <div className='right'>
           <div className='editor-div'>
             <Editor />

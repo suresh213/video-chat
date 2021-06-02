@@ -9,18 +9,63 @@
 }
 
 .flex-div .left .video-div {
-  display: block;
-  align-items: center;
-  text-align: center;
   grid-row-gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.flex-div .left .video-div video {
-  margin-top: 1rem;
+.flex-div .left .video-div .video-frames {
+  margin: auto;
+}
+
+.flex-div .left .video-div .video-frames .video-frame svg {
+  position: relative;
+  left: 10%;
+}
+
+.flex-div .left .video-div .video-frames .video-frame video {
   border: 2px solid #e8e8e8;
 }
 
 .flex-div .right {
   width: 70%;
   background-color: #0c66ac;
+}
+
+.hide-editor {
+  display: block;
+}
+
+.hide-editor .left {
+  width: 100%;
+  background-color: grey;
+  height: 100%;
+}
+
+.hide-editor .left .video-div {
+  height: 100%;
+}
+
+.hide-editor .left .video-div .video-frames {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
+}
+
+.hide-editor .left .video-div .video-frames .video-frame {
+  width: 70%;
+}
+
+.hide-editor .left .video-div .video-frames .video-frame svg {
+  position: relative;
+  left: 5%;
+}
+
+.hide-editor .left .video-div .video-frames .video-frame video {
+  width: 70%;
+  height: 50%;
+  border: 2px solid #e8e8e8;
 }
