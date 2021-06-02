@@ -24,6 +24,8 @@ const ContextProvider = ({ children }) => {
   const [myMicStatus, setMyMicStatus] = useState(true);
   const [userMicStatus, setUserMicStatus] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
+  const [showChatBox, setShowChatBox] = useState(false);
+  const [messages, setMessages] = useState([]);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
@@ -85,6 +87,11 @@ const ContextProvider = ({ children }) => {
       setCallEnded(true);
     });
   }, []);
+  
+  useEffect(() => {
+    console.log(messages);
+  }, [setMessages]);
+
 
   const answerCall = () => {
     setCallAccepted(true);
@@ -201,6 +208,10 @@ const ContextProvider = ({ children }) => {
         setShowEditor,
         showEditor,
         socketState,
+        showChatBox,
+        setShowChatBox,
+        messages,
+        setMessages,
       }}
     >
       {children}

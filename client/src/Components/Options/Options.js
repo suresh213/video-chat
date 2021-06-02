@@ -20,7 +20,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CallEndIcon from '@material-ui/icons/CallEnd';
 import ChatIcon from '@material-ui/icons/Chat';
 import Chat from '@material-ui/icons/Chat';
-
+import Messages from '../Messages/Messages';
 const Options = ({ children }) => {
   const [callId, setCallId] = useState('');
   const {
@@ -43,7 +43,8 @@ const Options = ({ children }) => {
     updateMicStatus,
     updateVideoStatus,
     showEditor,
-
+    showChatBox,
+    setShowChatBox,
     setShowEditor,
   } = useContext(SocketContext);
 
@@ -98,7 +99,7 @@ const Options = ({ children }) => {
           {' '}
           {myMicStatus ? <MicIcon /> : <MicOffIcon />}
         </button>
-        <button type='primary'>
+        <button type='primary' onClick={() => setShowChatBox(!showChatBox)}>
           <ChatIcon />
         </button>
         <Menu
@@ -168,6 +169,7 @@ const Options = ({ children }) => {
             </Button>
           </DialogContent>
         </Dialog>
+        <Messages />
       </div>
     </>
   );

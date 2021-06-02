@@ -34,13 +34,13 @@ io.on('connection', (socket) => {
   });
 
   socket.on('send-changes', (delta, documentId) => {
-    console.log(documentId)
+    console.log(documentId);
     io.to(documentId).emit('recieve-changes', delta);
   });
 
-  socket.on('send-message',data=>{
-    io.to(data.userToSend).emit('recieve-message',data.data)
-  })
+  socket.on('send-message', (data) => {
+    io.to(data.userToSend).emit('recieve-message', data.data);
+  });
 
   // socket.on('get-document', (documentId) => {
   //   console.log(documentId);
