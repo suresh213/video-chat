@@ -38,8 +38,8 @@ const Message = (props) => {
     setShowChatBox,
   } = useContext(SocketContext);
   return (
-    <div className={props.message.user === me ? 'message tr' : 'message tl'}>
-      {props.message.text}
+    <div className={props.item % 2 == 0 ? 'message-div tr' : 'message-div tl'}>
+      <div className='message'> {props.message.text}</div>
     </div>
   );
 };

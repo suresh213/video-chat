@@ -21,14 +21,37 @@ const ContextProvider = ({ children }) => {
   const [documentId, setDocumentId] = useState(v4());
   const [myVideoStatus, setMyVideoStatus] = useState(true);
   const [userVideoStatus, setUserVideoStatus] = useState(false);
-  const [myMicStatus, setMyMicStatus] = useState(true);
+  const [myMicStatus, setMyMicStatus] = useState(false);
   const [userMicStatus, setUserMicStatus] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
   const [showChatBox, setShowChatBox] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [notes, setNotes] = useState('');
+  const [notesOpen, setNotesOpen] = useState(false);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
+
+  // useEffect(() => {
+  //   if (myVideoStatus === false) return;
+  //   navigator.mediaDevices
+  //     .getUserMedia({ video: true, audio: true })
+  //     .then((res) => {
+  //       console.log(res);
+
+  //       // res.getVideoTracks()[0].enabled = false;
+  //       // res.getAudioTracks()[0].enabled = false;
+
+  //       setStream(res);
+  //       console.log(myVideo);
+  //       myVideo.current.srcObject = res;
+  //     });
+  // }, [myVideoStatus]);
+
+  useEffect(() => {
+    console.log(navigator.onLine)
+    if (!navigator.onLine) alert('Connect to internet!');
+  }, [navigator]);
 
   useEffect(() => {
     navigator.mediaDevices
@@ -37,6 +60,8 @@ const ContextProvider = ({ children }) => {
         console.log(res);
 
         // res.getVideoTracks()[0].enabled = false;
+        // res.getAudioTracks()[0].enabled = false;
+
         setStream(res);
         console.log(myVideo);
         myVideo.current.srcObject = res;
@@ -47,7 +72,8 @@ const ContextProvider = ({ children }) => {
       setMe(id);
     });
     socket.on('calluser', ({ from, name: callerName, signal, documentId }) => {
-      console.log({ documentId });
+      console.log({ from, callerName, signal, documentId });
+
       setCall({
         from,
         callerName,
@@ -84,14 +110,15 @@ const ContextProvider = ({ children }) => {
     // socket.on('recieve-changes', handler);
 
     socket.on('callended', () => {
+      setCall(null);
+      setCallAccepted(false);
       setCallEnded(true);
     });
   }, []);
-  
+
   useEffect(() => {
     console.log(messages);
   }, [setMessages]);
-
 
   const answerCall = () => {
     setCallAccepted(true);
@@ -155,6 +182,7 @@ const ContextProvider = ({ children }) => {
   };
 
   const endCall = () => {
+    socket.emit('callended', otherUser);
     setCallEnded(true);
     connectionRef.current.destroy();
     window.location.reload();
@@ -166,6 +194,11 @@ const ContextProvider = ({ children }) => {
       data: { type: 'video', mediaStatus: [!myVideoStatus] },
       userToUpdate: otherUser,
     });
+    // stream.getTracks().forEach(function (track) {
+    //   if (track.readyState == 'live' && track.kind === 'video') {
+    //     track.stop();
+    //   }
+    // });
     stream.getVideoTracks()[0].enabled = !myVideoStatus;
     setMyVideoStatus(!myVideoStatus);
     console.log(stream.getVideoTracks()[0]);
@@ -212,6 +245,10 @@ const ContextProvider = ({ children }) => {
         setShowChatBox,
         messages,
         setMessages,
+        notes,
+        setNotes,
+        notesOpen,
+        setNotesOpen,
       }}
     >
       {children}

@@ -20,6 +20,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('calluser', ({ userToCall, from, name, signal, documentId }) => {
+    console.log({ userToCall, from, name, documentId });
     io.to(userToCall).emit('calluser', { signal, from, name, documentId });
   });
 
@@ -58,9 +59,12 @@ io.on('connection', (socket) => {
   //     io.to(documentId).emit('recieve-changes', delta);
   //   });
   // });
-  socket.on('disconnect', () => {
-    socket.broadcast.emit('callended');
+  socket.on('callended', (userToUpdate) => {
+    io.to(userToUpdate).emit('callended');
   });
+  // socket.on('disconnect', () => {
+  //   socket.broadcast.emit('callended');
+  // });
 });
 
 app.get('/', (req, res) => {

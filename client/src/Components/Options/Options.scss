@@ -1,5 +1,5 @@
 .options {
-  background-color: white;
+  background-color: rgb(0, 0, 0);
   width: 30%;
   height: 10vh;
   margin: auto;
@@ -9,21 +9,23 @@
   justify-content: space-around;
   position: absolute;
   bottom: 0px;
+  
   button {
     display: flex;
     align-items: center;
-    border-radius: 50%;
+    border-radius: 10%;
     outline: none;
     border: none;
     padding: 10px;
     cursor: pointer;
     transition-duration: 0.4s;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     // &:hover {
     //   background-color: rgb(221, 221, 221);
     // }
   }
   .bg-white {
-    background-color: rgb(221, 221, 221);
+    // background-color: rgb(221, 221, 221);
   }
   .bg-grey {
     background-color: rgb(143, 143, 143);
@@ -41,6 +43,7 @@
 .options-menu {
   padding: 1rem;
   display: block;
+text-align: center;
   div {
     padding: 0.5rem;
   }
@@ -50,7 +53,20 @@
     outline: none;
     padding: 10px;
   }
+  .btn-div {
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      padding: 0 10px;
+    }
+    button {
+      background-color: white;
+      border: none;
+      cursor: pointer;
+      // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+  }
 }
-.w100{
-    width: 100%;
+.w100 {
+  width: 100%;
 }

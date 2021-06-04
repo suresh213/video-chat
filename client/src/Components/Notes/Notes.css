@@ -1,0 +1,37 @@
+.notes {
+  height: 50vh;
+  width: 40vw;
+  outline: none;
+}
+
+.notes .btn-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.notes .btn-div h3 {
+  padding: 0 10px;
+}
+
+.notes .btn-div .flex-btns-div {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.notes .btn-div .flex-btns-div button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.notes textarea {
+  border: none;
+  border-top: 0.5px solid gainsboro;
+  padding: 10px;
+  height: 90%;
+  width: 100%;
+  outline: none;
+  resize: none;
+}

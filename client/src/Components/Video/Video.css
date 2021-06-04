@@ -56,12 +56,19 @@
 }
 
 .hide-editor .left .video-div .video-frames .video-frame {
+  text-align: center;
+  border: 1px solid black;
   width: 70%;
 }
 
 .hide-editor .left .video-div .video-frames .video-frame svg {
   position: relative;
   left: 5%;
+}
+
+.hide-editor .left .video-div .video-frames .video-frame img {
+  width: 50px;
+  height: 50px;
 }
 
 .hide-editor .left .video-div .video-frames .video-frame video {

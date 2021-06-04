@@ -50,6 +50,11 @@ const Messages = () => {
   }, []);
 
   const sendMessage = () => {
+    if (newMessage.length <= 0) {
+      message.error('Enter some message');
+      return;
+    }
+
     let tempMessage = { text: newMessage, user: me };
     socket.emit('send-message', {
       data: tempMessage,
@@ -72,26 +77,37 @@ const Messages = () => {
     >
       <DialogTitle>ChatBox</DialogTitle>
       <DialogContent>
-        <div className='messages'>
-          {messages.map((item, i) => (
-            <Message message={item} key={i} />
-          ))}
+        <div className='outer-div'>
+          <div className='messages scrollbar'>
+            {messages.length > 0 ? (
+              messages.map((item, i) => (
+                <Message message={item} key={i} item={i} />
+              ))
+            ) : (
+              <h3>No messages</h3>
+            )}
+          </div>
         </div>
-        <input
-          type='text'
-          value={newMessage}
-          onChange={(e) => {
-            setNewMessage(e.target.value);
-          }}
-        />
-        <Button
-          type='primary'
-          onClick={() => {
-            sendMessage();
-          }}
-        >
-          Send
-        </Button>
+        <div className='inputs'>
+          {' '}
+          <input
+            type='text'
+            value={newMessage}
+            onChange={(e) => {
+              setNewMessage(e.target.value.trim());
+            }}
+            placeholder='Enter a message'
+            required
+          />
+          <Button
+            type='primary'
+            onClick={() => {
+              sendMessage();
+            }}
+          >
+            Send
+          </Button>
+        </div>
       </DialogContent>
     </Dialog>
   );

@@ -1,0 +1,32 @@
+.notes {
+  height: 50vh;
+  width: 40vw;
+  outline: none;
+  .btn-div {
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      padding: 0 10px;
+    }
+    .flex-btns-div {
+      width: 15%;
+      display: flex;
+      justify-content: space-between;
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+      }
+    }
+  }
+  textarea {
+    border: none;
+    border-top: 0.5px solid rgb(220, 220, 220);
+    padding: 10px;
+    height: 90%;
+    width: 100%;
+    outline: none;
+    resize: none;
+  }
+}

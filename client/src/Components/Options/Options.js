@@ -21,6 +21,9 @@ import CallEndIcon from '@material-ui/icons/CallEnd';
 import ChatIcon from '@material-ui/icons/Chat';
 import Chat from '@material-ui/icons/Chat';
 import Messages from '../Messages/Messages';
+import Notes from '../Notes/Notes';
+import CloseIcon from '@material-ui/icons/Close';
+
 const Options = ({ children }) => {
   const [callId, setCallId] = useState('');
   const {
@@ -46,6 +49,8 @@ const Options = ({ children }) => {
     showChatBox,
     setShowChatBox,
     setShowEditor,
+    notesOpen,
+    setNotesOpen,
   } = useContext(SocketContext);
 
   const [open, setOpen] = useState(true);
@@ -59,25 +64,26 @@ const Options = ({ children }) => {
     setAnchorEl(null);
   };
   useEffect(() => {
-    if (call.isRecievedCall && !callAccepted) {
+    if (call && call.isRecievedCall && !callAccepted ) {
       console.log('someone is calling..');
       setOpen(true);
     } else {
       setOpen(false);
     }
-  }, [call.isRecievedCall]);
+  }, [call, callEnded]);
 
   return (
     <>
       <div className={showEditor ? 'options' : 'options w100'}>
-        <IconButton
-          aria-label='more'
-          aria-controls='long-menu'
-          aria-haspopup='true'
+        
+        <button
+          // aria-label='more'
+          // aria-controls='long-menu'
+          // aria-haspopup='true'
           onClick={handleClick}
         >
           <MoreVertIcon />
-        </IconButton>
+        </button>
         {console.log(myMicStatus)}
         {console.log(myVideoStatus)}
         <button
@@ -102,6 +108,10 @@ const Options = ({ children }) => {
         <button type='primary' onClick={() => setShowChatBox(!showChatBox)}>
           <ChatIcon />
         </button>
+        {/* <button type='primary' onClick={() => setNotesOpen(!notesOpen)}>
+          <ChatIcon />
+        </button> */}
+        <Notes />
         <Menu
           id='long-menu'
           anchorEl={anchorEl}
@@ -110,6 +120,12 @@ const Options = ({ children }) => {
           onClose={handleClose}
         >
           <div className='options-menu'>
+            <div className='btn-div'>
+              <h3>Options</h3>
+              <button type='primary' onClick={handleClose}>
+                <CloseIcon />
+              </button>
+            </div>
             <div>
               <CopyToClipboard
                 text={me}
@@ -122,9 +138,9 @@ const Options = ({ children }) => {
             </div>
 
             <div>
-              <button onClick={() => setShowEditor(!showEditor)}>
+              <Button type='primary' onClick={() => setShowEditor(!showEditor)}>
                 {showEditor ? 'Hide Editor' : 'Show Editor'}
-              </button>
+              </Button>
             </div>
 
             <div>
@@ -146,29 +162,31 @@ const Options = ({ children }) => {
           </div>
         </Menu>
 
-        <Dialog
-          open={open}
-          // onClose={handleClose}
-          // PaperComponent={PaperComponent}
-          aria-labelledby='draggable-dialog-title'
-        >
-          <DialogTitle>hi</DialogTitle>
-          <DialogContent>
-            <p>{call.from} wants to join in this call</p>
-            <Button
-              type='primary'
-              onClick={() => {
-                answerCall();
-                setOpen(false);
-              }}
-            >
-              Answer
-            </Button>
-            <Button type='primary' onClick={() => setOpen(false)}>
-              Decline
-            </Button>
-          </DialogContent>
-        </Dialog>
+        {call && (
+          <Dialog
+            open={open}
+            // onClose={handleClose}
+            // PaperComponent={PaperComponent}
+            aria-labelledby='draggable-dialog-title'
+          >
+            <DialogTitle>hi</DialogTitle>
+            <DialogContent>
+              <p>{call.from} wants to join in this call</p>
+              <Button
+                type='primary'
+                onClick={() => {
+                  answerCall();
+                  setOpen(false);
+                }}
+              >
+                Answer
+              </Button>
+              <Button type='primary' onClick={() => setOpen(false)}>
+                Decline
+              </Button>
+            </DialogContent>
+          </Dialog>
+        )}
         <Messages />
       </div>
     </>
