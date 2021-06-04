@@ -37,6 +37,7 @@ const Video = () => {
 
   const [state, setState] = useState();
   useEffect(() => {
+    if(stream) return;
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {

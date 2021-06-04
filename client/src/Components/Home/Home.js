@@ -9,8 +9,10 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
-import { Link } from 'react-router-dom';
-const Home = () => {
+import { Link, Redirect } from 'react-router-dom';
+import { message } from 'antd';
+
+const Home = (props) => {
   const {
     me,
     call,
@@ -33,12 +35,19 @@ const Home = () => {
     updateVideoStatus,
     showEditor,
     setShowEditor,
+    meetingCode,
+    setMeetingCode,
+    setCallEnded,
+    setCallAccepted,
   } = useContext(SocketContext);
 
   useEffect(() => {
+    setCallEnded(true);
+    setCallAccepted(false);
     if (stream) {
       stream.getTracks().forEach((track) => track.stop());
     }
+    setStream(null);
     document.getElementById('video').play();
   }, []);
 
@@ -60,8 +69,26 @@ const Home = () => {
                 </Link>
               </div>
               <div className='join-meet'>
-                <input type='text' placeholder='Enter meeting code' />
-                <button className='home-btn'>Join Meeting</button>
+                <input
+                  type='text'
+                  placeholder='Enter meeting code'
+                  value={meetingCode}
+                  onChange={(e) => {
+                    setMeetingCode(e.target.value);
+                  }}
+                />
+                <button
+                  className='home-btn'
+                  onClick={() => {
+                    if (meetingCode.trim().length === 0) {
+                      message.error('Enter meeting code');
+                      return;
+                    }
+                    props.history.push('join');
+                  }}
+                >
+                  Join Meeting
+                </button>
               </div>
               <div className='features'>
                 <h1>Features</h1>

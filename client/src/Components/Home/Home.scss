@@ -5,7 +5,7 @@
   background-color: white;
   .navbar {
     // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    background-color: whitesmoke;
+    background-color: black;
     display: flex;
     justify-content: space-between;
     height: 8vh;
@@ -25,6 +25,7 @@
         font-weight: 400;
         // margin-left: 10px;
         margin: auto 0;
+        color: white;
       }
     }
   }
@@ -69,11 +70,12 @@
           &:focus {
             border-color: rgb(44, 189, 199);
           }
+          z-index: 100;
         }
         .home-btn {
           margin: auto;
           padding: 0.5rem 1rem;
-          border-radius: 10px;
+          border-radius: 25px;
           border: none;
           cursor: pointer;
           font-size: 17px;
@@ -150,9 +152,12 @@
       .flex-box {
         display: block;
         .left-div {
+          // position: relative;
+          z-index: 1;
           width: 100%;
           .contents {
             position: absolute;
+            
             width: 100%;
             margin-left: 10%;
             top: 25%;
@@ -167,6 +172,7 @@
           }
 
           input {
+            // z-index: 1;
             padding: 0.5rem;
             border: 2px solid rgb(209, 209, 209);
             outline: none;
@@ -179,6 +185,7 @@
             }
           }
           .home-btn {
+            position: relative;
             padding: 0.5rem;
             &:hover {
               background-color: rgb(27, 130, 153);
@@ -210,6 +217,7 @@
         .right-div {
           width: 100%;
           video {
+            z-index: -1;
             width: 100%;
             // height: 100%;
           }

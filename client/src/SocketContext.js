@@ -2,6 +2,7 @@ import { useEffect, createContext, useState, useRef } from 'react';
 import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { v4 } from 'uuid';
+import { useHistory } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 import { Input, Button, Tooltip, Modal, message } from 'antd';
@@ -10,6 +11,8 @@ const SocketContext = createContext();
 const socket = io('http://localhost:5000');
 
 const ContextProvider = ({ children }) => {
+  const history = useHistory();
+  console.log(history);
   const [socketState, setSocketState] = useState(socket);
   const [me, setMe] = useState('');
   const [call, setCall] = useState({});
@@ -27,6 +30,7 @@ const ContextProvider = ({ children }) => {
   const [showChatBox, setShowChatBox] = useState(false);
   const [messages, setMessages] = useState([]);
   const [notes, setNotes] = useState('');
+  const [meetingCode, setMeetingCode] = useState('');
   const [notesOpen, setNotesOpen] = useState(false);
   const myVideo = useRef();
   const userVideo = useRef();
@@ -184,8 +188,9 @@ const ContextProvider = ({ children }) => {
   const endCall = () => {
     socket.emit('callended', otherUser);
     setCallEnded(true);
-    connectionRef.current.destroy();
-    window.location.reload();
+    if (connectionRef.current) connectionRef.current.destroy();
+    history.push('/');
+    // window.location.reload();
   };
 
   const updateVideoStatus = () => {
@@ -240,7 +245,9 @@ const ContextProvider = ({ children }) => {
         me,
         call,
         callAccepted,
+        setCallAccepted,
         callEnded,
+        setCallEnded,
         name,
         setName,
         myVideo,
@@ -270,6 +277,8 @@ const ContextProvider = ({ children }) => {
         setNotes,
         notesOpen,
         setNotesOpen,
+        meetingCode,
+        setMeetingCode,
       }}
     >
       {children}

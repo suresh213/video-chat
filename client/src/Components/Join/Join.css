@@ -1,0 +1,67 @@
+.navbar {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+}
+
+.navbar .title-div {
+  align-items: center;
+  padding: 0 20px;
+  width: 10%;
+  display: flex;
+  justify-content: flex-start;
+  grid-column-gap: 10px;
+}
+
+.navbar .title-div img {
+  height: 70%;
+}
+
+.navbar .title-div h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: auto 0;
+}
+
+.join-page {
+  padding-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  place-content: center;
+  margin: auto;
+  text-align: center;
+}
+
+.join-page .video-div video {
+  width: 50%;
+  height: 40%;
+}
+
+.join-page .join-btns-div {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  margin: auto;
+  padding: 4rem 0.5rem;
+}
+
+.join-page .join-btns-div button {
+  margin: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  border: 2px solid #16c071;
+  background-color: #0d4b85;
+  color: white;
+  transition-duration: 0.4s;
+}
+
+.join-page .join-btns-div button:hover {
+  background-color: #1b8299;
+  color: white;
+}

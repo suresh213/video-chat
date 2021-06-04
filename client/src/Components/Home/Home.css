@@ -5,7 +5,7 @@
 }
 
 .home .navbar {
-  background-color: whitesmoke;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   height: 8vh;
@@ -28,6 +28,7 @@
   font-size: 22px;
   font-weight: 400;
   margin: auto 0;
+  color: white;
 }
 
 .home .body-div {
@@ -70,6 +71,7 @@
   width: 70%;
   font-size: 18px;
   transition-duration: 0.4s;
+  z-index: 100;
 }
 
 .home .body-div .flex-box .left-div input:focus {
@@ -79,7 +81,7 @@
 .home .body-div .flex-box .left-div .home-btn {
   margin: auto;
   padding: 0.5rem 1rem;
-  border-radius: 10px;
+  border-radius: 25px;
   border: none;
   cursor: pointer;
   font-size: 17px;
@@ -151,6 +153,7 @@
     display: block;
   }
   .home .body-div .flex-box .left-div {
+    z-index: 1;
     width: 100%;
   }
   .home .body-div .flex-box .left-div .contents {
@@ -180,6 +183,7 @@
     border-color: #2cbdc7;
   }
   .home .body-div .flex-box .left-div .home-btn {
+    position: relative;
     padding: 0.5rem;
     z-index: 1;
   }
@@ -210,6 +214,7 @@
     width: 100%;
   }
   .home .body-div .flex-box .right-div video {
+    z-index: -1;
     width: 100%;
   }
 }
