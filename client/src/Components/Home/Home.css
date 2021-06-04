@@ -1,0 +1,215 @@
+.home {
+  position: relative;
+  overflow-y: hidden;
+  background-color: white;
+}
+
+.home .navbar {
+  background-color: whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+}
+
+.home .navbar .title-div {
+  align-items: center;
+  padding: 0 20px;
+  width: 10%;
+  display: flex;
+  justify-content: flex-start;
+  grid-column-gap: 10px;
+}
+
+.home .navbar .title-div img {
+  height: 70%;
+}
+
+.home .navbar .title-div h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: auto 0;
+}
+
+.home .body-div {
+  height: 87vh;
+}
+
+.home .body-div .flex-box {
+  display: flex;
+}
+
+.home .body-div .flex-box .left-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40%;
+  align-items: center;
+}
+
+.home .body-div .flex-box .left-div .contents {
+  position: absolute;
+  width: 40%;
+  margin-left: 30%;
+  align-items: center;
+}
+
+.home .body-div .flex-box .left-div .contents img {
+  width: 120%;
+  height: 140%;
+  opacity: 0.15;
+  top: 20%;
+  right: 55%;
+  position: absolute;
+}
+
+.home .body-div .flex-box .left-div input {
+  padding: 0.5rem;
+  border: 2px solid #d1d1d1;
+  outline: none;
+  border-radius: 10px;
+  width: 70%;
+  font-size: 18px;
+  transition-duration: 0.4s;
+}
+
+.home .body-div .flex-box .left-div input:focus {
+  border-color: #2cbdc7;
+}
+
+.home .body-div .flex-box .left-div .home-btn {
+  margin: auto;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 17px;
+  border: 2px solid #16c071;
+  background-color: #0d4b85;
+  color: white;
+  transition-duration: 0.4s;
+  z-index: 1;
+}
+
+.home .body-div .flex-box .left-div .home-btn:hover {
+  background-color: #1b8299;
+  color: white;
+}
+
+.home .body-div .flex-box .left-div .start-meet {
+  padding: 1rem 0;
+}
+
+.home .body-div .flex-box .left-div .join-meet {
+  width: 90%;
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.home .body-div .flex-box .left-div .features {
+  margin: auto;
+  padding: 1rem;
+  margin-left: 4rem;
+}
+
+.home .body-div .flex-box .left-div .features .grid-div {
+  width: 70%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  grid-column-gap: 10px;
+  margin-left: 10%;
+}
+
+.home .body-div .flex-box .left-div .features .grid-div p {
+  font-size: 20px;
+}
+
+.home .body-div .flex-box .left-div .features .grid-div p {
+  margin: auto 0;
+}
+
+.home .body-div .flex-box .left-div .features .grid-div svg {
+  font-size: 30px;
+}
+
+.home .body-div .flex-box .right-div {
+  width: 60%;
+}
+
+.home .body-div .flex-box .right-div video {
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .home .body-div {
+    height: 87vh;
+  }
+  .home .body-div .flex-box {
+    display: block;
+  }
+  .home .body-div .flex-box .left-div {
+    width: 100%;
+  }
+  .home .body-div .flex-box .left-div .contents {
+    position: absolute;
+    width: 100%;
+    margin-left: 10%;
+    top: 25%;
+  }
+  .home .body-div .flex-box .left-div .contents img {
+    width: 90%;
+    height: 70%;
+    opacity: 0.15;
+    top: 50%;
+    right: 45%;
+    position: absolute;
+  }
+  .home .body-div .flex-box .left-div input {
+    padding: 0.5rem;
+    border: 2px solid #d1d1d1;
+    outline: none;
+    border-radius: 10px;
+    width: 55%;
+    font-size: 18px;
+    transition-duration: 0.4s;
+  }
+  .home .body-div .flex-box .left-div input:focus {
+    border-color: #2cbdc7;
+  }
+  .home .body-div .flex-box .left-div .home-btn {
+    padding: 0.5rem;
+    z-index: 1;
+  }
+  .home .body-div .flex-box .left-div .home-btn:hover {
+    background-color: #1b8299;
+    color: white;
+  }
+  .home .body-div .flex-box .left-div .start-meet {
+    padding: 2rem 1rem;
+  }
+  .home .body-div .flex-box .left-div .join-meet {
+    width: 100%;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .home .body-div .flex-box .left-div .features {
+    margin: auto;
+    padding: 1rem;
+    margin-left: 1rem;
+  }
+  .home .body-div .flex-box .left-div .features .grid-div {
+    width: 90%;
+    margin-left: 10%;
+  }
+  .home .body-div .flex-box .right-div {
+    width: 100%;
+  }
+  .home .body-div .flex-box .right-div video {
+    width: 100%;
+  }
+}

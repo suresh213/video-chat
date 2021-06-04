@@ -21,6 +21,7 @@ const Video = () => {
     myVideo,
     userVideo,
     stream,
+    setStream,
     answerCall,
     callUser,
     endCall,
@@ -35,7 +36,20 @@ const Video = () => {
   } = useContext(SocketContext);
 
   const [state, setState] = useState();
+  useEffect(() => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true, audio: true })
+      .then((res) => {
+        console.log(res);
 
+        // res.getVideoTracks()[0].enabled = false;
+        // res.getAudioTracks()[0].enabled = false;
+
+        setStream(res);
+        console.log(myVideo);
+        myVideo.current.srcObject = res;
+      });
+  }, []);
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
@@ -47,8 +61,8 @@ const Video = () => {
               {stream && (
                 <>
                   <video
-                    // width='250'
-                    // height='140'
+                    width='250'
+                    height='140'
                     src=''
                     ref={myVideo}
                     autoPlay
@@ -57,7 +71,15 @@ const Video = () => {
                   ></video>
                   <img
                     src={homeIcon}
-                    style={myVideoStatus ? {display:'none'} : { position:'relative',bottom:'120px',right:'180px' }}
+                    style={
+                      myVideoStatus
+                        ? { display: 'none' }
+                        : {
+                            position: 'relative',
+                            bottom: '120px',
+                            right: '180px',
+                          }
+                    }
                   />
                 </>
               )}

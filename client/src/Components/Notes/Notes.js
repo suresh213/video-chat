@@ -48,8 +48,9 @@ const Notes = () => {
 
   return (
     <>
-      <button type='primary' onClick={handleClick}>
+      <button className='tooltip' type='primary' onClick={handleClick}>
         <EventNoteIcon />
+        <span class='tooltiptext'>Notes</span>
       </button>
       <Menu
         id='long-menu'

@@ -64,7 +64,7 @@ const Options = ({ children }) => {
     setAnchorEl(null);
   };
   useEffect(() => {
-    if (call && call.isRecievedCall && !callAccepted ) {
+    if (call && call.isRecievedCall && !callAccepted) {
       console.log('someone is calling..');
       setOpen(true);
     } else {
@@ -75,14 +75,15 @@ const Options = ({ children }) => {
   return (
     <>
       <div className={showEditor ? 'options' : 'options w100'}>
-        
         <button
           // aria-label='more'
           // aria-controls='long-menu'
           // aria-haspopup='true'
+          className='tooltip'
           onClick={handleClick}
         >
           <MoreVertIcon />
+          <span class='tooltiptext'>Options</span>
         </button>
         {console.log(myMicStatus)}
         {console.log(myVideoStatus)}
@@ -99,14 +100,20 @@ const Options = ({ children }) => {
 
         {/* )} */}
         <button
+        
           onClick={() => updateMicStatus()}
           className={!myMicStatus ? 'bg-grey' : 'bg-white'}
         >
           {' '}
           {myMicStatus ? <MicIcon /> : <MicOffIcon />}
         </button>
-        <button type='primary' onClick={() => setShowChatBox(!showChatBox)}>
+        <button
+          className='tooltip'
+          type='primary'
+          onClick={() => setShowChatBox(!showChatBox)}
+        >
           <ChatIcon />
+          <span class='tooltiptext'>Chat</span>
         </button>
         {/* <button type='primary' onClick={() => setNotesOpen(!notesOpen)}>
           <ChatIcon />

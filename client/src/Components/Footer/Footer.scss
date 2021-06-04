@@ -1,0 +1,48 @@
+.footer {
+  height: 5vh;
+  z-index: -1;
+  //   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //   color: white;
+  margin: auto;
+  p {
+    margin: auto 0;
+    font-size: 17px;
+    font-weight: 500;
+    svg {
+      fill: rgb(248, 3, 3);
+    }
+  }
+  img {
+    height: 17px;
+    width: 17px;
+  }
+  svg {
+    margin-top: 0px;
+    margin-left: 30px;
+    padding: 0px;
+    float: right;
+  }
+  .heartIcon {
+    span {
+      svg {
+        font-size: 21px;
+        fill: red;
+      }
+    }
+  }
+  .linkIcon {
+    svg {
+      font-size: 21px;
+      fill: #0e76a8;
+    }
+  }
+  .githubIcon {
+    svg {
+      font-size: 20px;
+      fill: black;
+    }
+  }
+}

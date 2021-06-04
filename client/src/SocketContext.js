@@ -49,23 +49,23 @@ const ContextProvider = ({ children }) => {
   // }, [myVideoStatus]);
 
   useEffect(() => {
-    console.log(navigator.onLine)
+    console.log(navigator.onLine);
     if (!navigator.onLine) alert('Connect to internet!');
   }, [navigator]);
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({ video: true, audio: true })
-      .then((res) => {
-        console.log(res);
+    // navigator.mediaDevices
+    //   .getUserMedia({ video: true, audio: true })
+    //   .then((res) => {
+    //     console.log(res);
 
-        // res.getVideoTracks()[0].enabled = false;
-        // res.getAudioTracks()[0].enabled = false;
+    //     // res.getVideoTracks()[0].enabled = false;
+    //     // res.getAudioTracks()[0].enabled = false;
 
-        setStream(res);
-        console.log(myVideo);
-        myVideo.current.srcObject = res;
-      });
+    //     setStream(res);
+    //     console.log(myVideo);
+    //     // myVideo.current.srcObject = res;
+    //   });
 
     socket.on('me', (id) => {
       console.log(id);
@@ -194,11 +194,31 @@ const ContextProvider = ({ children }) => {
       data: { type: 'video', mediaStatus: [!myVideoStatus] },
       userToUpdate: otherUser,
     });
-    // stream.getTracks().forEach(function (track) {
-    //   if (track.readyState == 'live' && track.kind === 'video') {
-    //     track.stop();
-    //   }
-    // });
+    // if (myVideoStatus) {
+    //   console.log(stream.getTracks());
+    //   stream.getTracks().forEach(function (track) {
+    //     console.log(track);
+    //     if (track.readyState == 'live' && track.kind === 'video') {
+    //       track.stop();
+    //     }
+    //   });
+    // } else {
+    //   console.log(stream.getTracks());
+    //   // stream.getTracks().forEach(function (track) {
+    //   //   console.log(track)
+    //   //   if (track.readyState == 'live' && track.kind === 'video') {
+    //   //     track.start();
+    //   //   }
+    //   // });
+    //   navigator.mediaDevices
+    //     .getUserMedia({ video: true, audio: true })
+    //     .then((res) => {
+    //       console.log(res);
+    //       setStream(res);
+    //       console.log(myVideo);
+    //       myVideo.current.srcObject = res;
+    //     });
+    // }
     stream.getVideoTracks()[0].enabled = !myVideoStatus;
     setMyVideoStatus(!myVideoStatus);
     console.log(stream.getVideoTracks()[0]);
@@ -226,6 +246,7 @@ const ContextProvider = ({ children }) => {
         myVideo,
         userVideo,
         stream,
+        setStream,
         answerCall,
         callUser,
         endCall,

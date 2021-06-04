@@ -1,0 +1,220 @@
+@import '../../assets/styles/_mixins.scss';
+.home {
+  position: relative;
+  overflow-y: hidden;
+  background-color: white;
+  .navbar {
+    // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: space-between;
+    height: 8vh;
+    .title-div {
+      align-items: center;
+      padding: 0 20px;
+      width: 10%;
+      display: flex;
+      justify-content: flex-start;
+      grid-column-gap: 10px;
+      img {
+        // width: 70%;
+        height: 70%;
+      }
+      h3 {
+        font-size: 22px;
+        font-weight: 400;
+        // margin-left: 10px;
+        margin: auto 0;
+      }
+    }
+  }
+  .body-div {
+    height: 87vh;
+    .flex-box {
+      display: flex;
+      .left-div {
+        // margin: auto;
+        //   text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40%;
+        align-items: center;
+        // padding: 3rem;
+
+        .contents {
+          position: absolute;
+          width: 40%;
+          margin-left: 30%;
+          //   background-color: whitesmoke;
+          align-items: center;
+          img {
+            width: 120%;
+            height: 140%;
+            opacity: 0.15;
+            top: 20%;
+            right: 55%;
+            position: absolute;
+          }
+        }
+
+        input {
+          padding: 0.5rem;
+          border: 2px solid rgb(209, 209, 209);
+          outline: none;
+          border-radius: 10px;
+          width: 70%;
+          font-size: 18px;
+          transition-duration: 0.4s;
+          &:focus {
+            border-color: rgb(44, 189, 199);
+          }
+        }
+        .home-btn {
+          margin: auto;
+          padding: 0.5rem 1rem;
+          border-radius: 10px;
+          border: none;
+          cursor: pointer;
+          font-size: 17px;
+          border: 2px solid rgb(22, 192, 113);
+          background-color: rgb(13, 75, 133);
+          color: white;
+          transition-duration: 0.4s;
+          &:hover {
+            background-color: rgb(27, 130, 153);
+            color: white;
+          }
+          z-index: 1;
+        }
+        .start-meet {
+          //     display: flex;
+          //   justify-content: flex-start;
+          // align-items: center;
+          // margin: left;
+          padding: 1rem 0;
+        }
+        .join-meet {
+          //   margin: auto;
+          width: 90%;
+          padding: 1rem 0;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .features {
+          margin: auto;
+          padding: 1rem;
+          margin-left: 4rem;
+          .grid-div {
+            width: 70%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 10px;
+            grid-column-gap: 10px;
+            margin-left: 10%;
+            // background-color: grey;
+            p {
+              font-size: 20px;
+            }
+            p {
+              margin: auto 0;
+            }
+            svg {
+              font-size: 30px;
+            }
+          }
+        }
+      }
+      .right-div {
+        width: 60%;
+        // img {
+        //   width: 30%;
+        //   height: 30%;
+        //   display: flex;
+        //   align-items: center;
+        // }
+        // background-color: whitesmoke;
+        video {
+          width: 100%;
+          // height: 100%;
+        }
+      }
+    }
+  }
+  @include mobile {
+    // overflow-y: scroll;
+    .body-div {
+      height: 87vh;
+      .flex-box {
+        display: block;
+        .left-div {
+          width: 100%;
+          .contents {
+            position: absolute;
+            width: 100%;
+            margin-left: 10%;
+            top: 25%;
+            img {
+              width: 90%;
+              height: 70%;
+              opacity: 0.15;
+              top: 50%;
+              right: 45%;
+              position: absolute;
+            }
+          }
+
+          input {
+            padding: 0.5rem;
+            border: 2px solid rgb(209, 209, 209);
+            outline: none;
+            border-radius: 10px;
+            width: 55%;
+            font-size: 18px;
+            transition-duration: 0.4s;
+            &:focus {
+              border-color: rgb(44, 189, 199);
+            }
+          }
+          .home-btn {
+            padding: 0.5rem;
+            &:hover {
+              background-color: rgb(27, 130, 153);
+              color: white;
+            }
+            z-index: 1;
+          }
+          .start-meet{
+              padding:2rem 1rem;
+          }
+          .join-meet {
+            //   margin: auto;
+            width: 100%;
+            padding: 0.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+          }
+          .features {
+            margin: auto;
+            padding: 1rem;
+            margin-left: 1rem;
+            .grid-div {
+              width: 90%;
+              margin-left: 10%;
+            }
+          }
+        }
+        .right-div {
+          width: 100%;
+          video {
+            width: 100%;
+            // height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
