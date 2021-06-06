@@ -1,7 +1,12 @@
+@import '../../assets/styles/_mixins.scss';
 .outer-div {
   height: 40vh;
   width: 20vw;
   // background-color: black;
+  @include mobile {
+    height: 60vh;
+    width: 70vw;
+  }
 }
 .messages {
   overflow-y: scroll;
@@ -12,7 +17,7 @@
   padding: 10px;
   width: 100%;
   height: 100%;
-  h3{
+  h3 {
     text-align: center;
   }
   flex: auto;
@@ -22,7 +27,6 @@
   display: flex;
   margin-bottom: 10px;
   word-wrap: break-word;
-  
 }
 .message {
   display: flex;
@@ -42,23 +46,28 @@
   // text-align: left;
   justify-content: flex-start;
 }
-.inputs{
+.inputs {
   // width: 30vw;
   margin-top: 20px;
-  input{
+  input {
     width: 70%;
     border: 1px solid grey;
     outline: none;
     border-radius: 10px;
     padding: 5px;
   }
-  Button{
+  Button {
     margin-left: 1vw;
   }
   // background-color: black;
+  @include mobile {
+    input {
+      width: 75%;
+  }
+}
 }
 .scrollbar {
-  overflow:auto;
+  overflow: auto;
 }
 
 .scrollbar::-webkit-scrollbar {

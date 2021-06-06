@@ -165,10 +165,6 @@ const Editor = () => {
     saveAs(pdfAsBlob, `${name}.pdf`);
   };
 
-  const openNewDoc = () => {
-    history.push(`/document/${uuidV4()}`);
-    window.location.reload();
-  };
 
   return (
     <>

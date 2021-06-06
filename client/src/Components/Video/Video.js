@@ -96,7 +96,7 @@ const Video = (props) => {
                     muted
                     style={myVideoStatus ? { opacity: 1 } : { opacity: 0 }}
                   ></video>
-                  <img
+                  {/* <img
                     src={homeIcon}
                     style={
                       myVideoStatus
@@ -107,7 +107,7 @@ const Video = (props) => {
                             right: '180px',
                           }
                     }
-                  />
+                  /> */}
                 </>
               )}
               <div className='name'>{name}</div>
@@ -117,7 +117,7 @@ const Video = (props) => {
             {callAccepted && (
               <div className='video-frame'>
                 {userMicStatus ? <MicIcon /> : <MicOffIcon />}
-                {userVideoStatus ? (
+                {/* {userVideoStatus ? ( */}
                   <video
                     width='250'
                     height='140'
@@ -126,9 +126,9 @@ const Video = (props) => {
                     autoPlay
                     muted
                   ></video>
-                ) : (
+                {/* ) : (
                   <img src={homeIcon} />
-                )}
+                )} */}
                 <div className='name'>{name}</div>
               </div>
             )}

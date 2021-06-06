@@ -9,7 +9,7 @@
   justify-content: space-around;
   position: absolute;
   bottom: 0px;
-  
+
   button {
     display: flex;
     align-items: center;
@@ -19,7 +19,8 @@
     padding: 10px;
     cursor: pointer;
     transition-duration: 0.4s;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
     // &:hover {
     //   background-color: rgb(221, 221, 221);
     // }
@@ -41,9 +42,9 @@
   }
 }
 .options-menu {
-  padding: 1rem;
+  padding: 0 1rem;
   display: block;
-text-align: center;
+  text-align: center;
   div {
     padding: 0.5rem;
   }
@@ -69,4 +70,15 @@ text-align: center;
 }
 .w100 {
   width: 100%;
+}
+
+.call-div {
+  p {
+    font-size: 20px;
+  }
+  .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }

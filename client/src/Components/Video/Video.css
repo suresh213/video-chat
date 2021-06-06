@@ -5,7 +5,6 @@
 
 .flex-div .left {
   width: 30%;
-  background-color: grey;
 }
 
 .flex-div .left .video-div {
@@ -32,14 +31,13 @@
 }
 
 .flex-div .left .video-div .video-frames .video-frame svg {
-  position: relative;
-  left: 10%;
+  position: absolute;
+  left: 4%;
 }
 
 .flex-div .left .video-div .video-frames .video-frame video {
   width: 70%;
   height: 70%;
-  border: 2px solid #e8e8e8;
 }
 
 .flex-div .left .video-div .video-frames .video-frame .name {
@@ -49,7 +47,7 @@
 @media (max-width: 576px) {
   .flex-div .left {
     width: 30%;
-    background-color: grey;
+    background-color: #e8e8e8;
   }
   .flex-div .left .video-div {
     grid-row-gap: 1rem;
@@ -64,14 +62,12 @@
     position: relative;
     left: 10%;
   }
-  .flex-div .left .video-div .video-frames .video-frame video {
-    border: 2px solid #e8e8e8;
-  }
 }
 
 .flex-div .right {
   width: 70%;
-  background-color: #0c66ac;
+  background-color: #ebebeb;
+  border-left: 1px solid #d5d5d5;
 }
 
 .hide-editor {
@@ -80,7 +76,7 @@
 
 .hide-editor .left {
   width: 100%;
-  background-color: grey;
+  background-color: #e8e8e8;
   height: 100%;
 }
 
@@ -103,7 +99,7 @@
 
 .hide-editor .left .video-div .video-frames .video-frame svg {
   position: relative;
-  left: 5%;
+  left: 0%;
 }
 
 .hide-editor .left .video-div .video-frames .video-frame img {
@@ -114,13 +110,12 @@
 .hide-editor .left .video-div .video-frames .video-frame video {
   width: 90%;
   height: 80%;
-  border: 2px solid #e8e8e8;
 }
 
 @media (max-width: 576px) {
   .hide-editor .left {
     width: 100%;
-    background-color: grey;
+    background-color: #e8e8e8;
     height: 100%;
   }
   .hide-editor .left .video-div .video-frames {
@@ -146,10 +141,11 @@
   .hide-editor .left .video-div .video-frames .video-frame img {
     width: 50px;
     height: 50px;
+    position: absolute;
+    left: 0%;
   }
   .hide-editor .left .video-div .video-frames .video-frame video {
     width: 100%;
     height: 100%;
-    border: 2px solid #e8e8e8;
   }
 }

@@ -200,19 +200,22 @@ const Options = (props) => {
           >
             <DialogTitle>Meet Call</DialogTitle>
             <DialogContent>
-              <p>{call.name} wants to join with you</p>
-              <Button
-                type='primary'
-                onClick={() => {
-                  answerCall();
-                  setOpen(false);
-                }}
-              >
-                Accept
-              </Button>
-              <Button type='primary' onClick={() => setOpen(false)}>
-                Den
-              </Button>
+              <div className='call-div'>
+                <p>{call.callerName} wants to join with you</p>
+                <div className='flex'><Button
+                  type='primary'
+                  onClick={() => {
+                    answerCall();
+                    setOpen(false);
+                  }}
+                >
+                  Accept
+                </Button>
+                <Button type='primary' onClick={() => setOpen(false)}>
+                  Deny
+                </Button></div>
+                
+              </div>
             </DialogContent>
           </Dialog>
         )}
