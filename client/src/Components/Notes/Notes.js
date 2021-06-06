@@ -27,6 +27,16 @@ const Notes = () => {
   const { notes, setNotes, notesOpen, setNotesOpen } =
     useContext(SocketContext);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileView, setMobileView] = useState(false);
+
+  const resize = () => {
+    setMobileView(window.innerWidth <= 600);
+  };
+
+  useEffect(() => {
+    resize();
+    window.addEventListener('resize', resize);
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,10 +58,12 @@ const Notes = () => {
 
   return (
     <>
-      <button className='tooltip' type='primary' onClick={handleClick}>
-        <EventNoteIcon />
-        <span class='tooltiptext'>Notes</span>
-      </button>
+      {!mobileView && (
+        <button className='tooltip' type='primary' onClick={handleClick}>
+          <EventNoteIcon />
+          <span class='tooltiptext'>Notes</span>
+        </button>
+      )}
       <Menu
         id='long-menu'
         anchorEl={anchorEl}

@@ -24,7 +24,7 @@ import Messages from '../Messages/Messages';
 import Notes from '../Notes/Notes';
 import CloseIcon from '@material-ui/icons/Close';
 
-const Options = ({ children }) => {
+const Options = (props) => {
   const [callId, setCallId] = useState('');
   const {
     me,
@@ -55,6 +55,16 @@ const Options = ({ children }) => {
 
   const [open, setOpen] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [mobileView, setMobileView] = useState(false);
+  console.log(props.history);
+  const resize = () => {
+    setMobileView(window.innerWidth <= 600);
+  };
+
+  useEffect(() => {
+    resize();
+    window.addEventListener('resize', resize);
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,13 +104,19 @@ const Options = ({ children }) => {
           {myVideoStatus ? <VideocamIcon /> : <VideocamOffIcon />}
         </button>
         {/* {callAccepted && !callEnded && ( */}
-        <button className='red-btn ' type='primary' onClick={() => endCall()}>
+        <button
+          className='red-btn '
+          type='primary'
+          onClick={() => {
+            console.log(props.history);
+            endCall(props.history);
+          }}
+        >
           <CallEndIcon />
         </button>
 
         {/* )} */}
         <button
-        
           onClick={() => updateMicStatus()}
           className={!myMicStatus ? 'bg-grey' : 'bg-white'}
         >
@@ -133,7 +149,7 @@ const Options = ({ children }) => {
                 <CloseIcon />
               </button>
             </div>
-            <h3 className="name">{name}</h3>
+            <h3 className='name'>{name}</h3>
             <div>
               <CopyToClipboard
                 text={me}
@@ -145,27 +161,32 @@ const Options = ({ children }) => {
               </CopyToClipboard>
             </div>
 
-            <div>
-              <Button type='primary' onClick={() => setShowEditor(!showEditor)}>
-                {showEditor ? 'Hide Editor' : 'Show Editor'}
-              </Button>
-            </div>
+            {!mobileView && (
+              <div>
+                <Button
+                  type='primary'
+                  onClick={() => setShowEditor(!showEditor)}
+                >
+                  {showEditor ? 'Hide Editor' : 'Show Editor'}
+                </Button>
+              </div>
+            )}
 
-            <div>
+            {/* <div>
               <input
                 type='text'
                 placeholder='Enter Id to call'
                 value={callId}
                 onChange={(e) => setCallId(e.target.value)}
               />
-            </div>
+            </div> */}
 
             {/* {!callAccepted && !callEnded && ( */}
-            <div>
+            {/* <div>
               <Button type='primary' onClick={() => callUser(callId)}>
                 Join
               </Button>
-            </div>
+            </div> */}
             {/* )} */}
           </div>
         </Menu>
@@ -177,9 +198,9 @@ const Options = ({ children }) => {
             // PaperComponent={PaperComponent}
             aria-labelledby='draggable-dialog-title'
           >
-            <DialogTitle>hi</DialogTitle>
+            <DialogTitle>Meet Call</DialogTitle>
             <DialogContent>
-              <p>{call.from} wants to join in this call</p>
+              <p>{call.name} wants to join with you</p>
               <Button
                 type='primary'
                 onClick={() => {
@@ -187,10 +208,10 @@ const Options = ({ children }) => {
                   setOpen(false);
                 }}
               >
-                Answer
+                Accept
               </Button>
               <Button type='primary' onClick={() => setOpen(false)}>
-                Decline
+                Den
               </Button>
             </DialogContent>
           </Dialog>

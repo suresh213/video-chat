@@ -2,7 +2,7 @@ import { useEffect, createContext, useState, useRef } from 'react';
 import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { v4 } from 'uuid';
-import { useHistory } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 import 'antd/dist/antd.css';
 import { Input, Button, Tooltip, Modal, message } from 'antd';
@@ -11,8 +11,8 @@ const SocketContext = createContext();
 const socket = io('http://localhost:5000');
 
 const ContextProvider = ({ children }) => {
-  const history = useHistory();
-  console.log(history);
+  // const history = useNavigate();
+  // console.log(history);
   const [socketState, setSocketState] = useState(socket);
   const [me, setMe] = useState('');
   const [newMeet, setNewMeet] = useState(false);
@@ -144,7 +144,7 @@ const ContextProvider = ({ children }) => {
         type: 'both',
         mediaStatus: [myMicStatus, myVideoStatus],
       });
-      message.info(`${name} joined with you`)
+      message.info(`${name} joined with you`);
     });
 
     peer.on('stream', (currentStream) => {
@@ -185,18 +185,19 @@ const ContextProvider = ({ children }) => {
       });
       setCallAccepted(true);
       peer.signal(signal);
-      message.info(`${name} joined with you`)
+      message.info(`${name} joined with you`);
     });
 
     connectionRef.current = peer;
   };
 
-  const endCall = () => {
+  const endCall = (history) => {
     socket.emit('callended', otherUser);
     setCallEnded(true);
     setCallAccepted(false);
     if (connectionRef.current) connectionRef.current.destroy();
     history.push('/');
+    message.success('Meet Ended');
     // window.location.reload();
   };
 

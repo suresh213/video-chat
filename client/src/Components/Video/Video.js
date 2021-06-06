@@ -12,7 +12,7 @@ import { Link, Redirect } from 'react-router-dom';
 
 import homeIcon from '../../assets/home.png';
 
-const Video = () => {
+const Video = (props) => {
   const {
     me,
     call,
@@ -40,6 +40,17 @@ const Video = () => {
   } = useContext(SocketContext);
 
   const [state, setState] = useState();
+  const [mobileView, setMobileView] = useState(false);
+
+  const resize = () => {
+    setMobileView(window.innerWidth <= 600);
+  };
+
+  useEffect(() => {
+    resize();
+    window.addEventListener('resize', resize);
+  },[])
+
   useEffect(() => {
     if (stream) {
       myVideo.current.srcObject = stream;
@@ -124,10 +135,10 @@ const Video = () => {
           </div>
         </div>
         <div className='bar'>
-          <Options />
+          <Options history={props.history}/>
         </div>
       </div>
-      {showEditor && (
+      {showEditor && !mobileView&&(
         <div className='right'>
           <div className='editor-div'>
             <Editor />

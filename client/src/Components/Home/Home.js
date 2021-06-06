@@ -84,7 +84,7 @@ const Home = (props) => {
                   className='home-btn'
                   onClick={() => {
                     if (meetingCode.trim().length === 0) {
-                      message.error('Enter meeting code');
+                      message.error('Please enter meeting code');
                       return;
                     }
                     props.history.push('join');
