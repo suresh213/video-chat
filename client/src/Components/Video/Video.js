@@ -8,6 +8,8 @@ import VideocamOffIcon from '@material-ui/icons/VideocamOff';
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
+import { Link, Redirect } from 'react-router-dom';
+
 import homeIcon from '../../assets/home.png';
 
 const Video = () => {
@@ -33,11 +35,16 @@ const Video = () => {
     updateVideoStatus,
     showEditor,
     setShowEditor,
+    otherUserStream,
+    setOtherUserStream,
   } = useContext(SocketContext);
 
   const [state, setState] = useState();
   useEffect(() => {
-    if(stream) return;
+    if (stream) {
+      myVideo.current.srcObject = stream;
+      return;
+    }
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
@@ -51,6 +58,14 @@ const Video = () => {
         myVideo.current.srcObject = res;
       });
   }, []);
+
+  useEffect(() => {
+    if (userVideo.current) userVideo.current.srcObject = otherUserStream;
+    console.log(otherUserStream);
+    console.log(userVideo.current);
+    console.log(callEnded);
+  }, [otherUserStream, userVideoStatus]);
+
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
@@ -84,12 +99,13 @@ const Video = () => {
                   />
                 </>
               )}
+              <div className='name'>{name}</div>
             </div>
 
-            {console.log('user mic ', userMicStatus)}
-            {callAccepted && !callEnded && (
+            {console.log('user mic ', callAccepted, callEnded)}
+            {callAccepted && (
               <div className='video-frame'>
-                {myMicStatus ? <MicIcon /> : <MicOffIcon />}
+                {userMicStatus ? <MicIcon /> : <MicOffIcon />}
                 {userVideoStatus ? (
                   <video
                     width='250'
@@ -102,6 +118,7 @@ const Video = () => {
                 ) : (
                   <img src={homeIcon} />
                 )}
+                <div className='name'>{name}</div>
               </div>
             )}
           </div>

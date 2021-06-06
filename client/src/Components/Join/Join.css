@@ -25,7 +25,7 @@
 }
 
 .join-page {
-  padding-top: 10%;
+  padding-top: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,16 +39,32 @@
   height: 40%;
 }
 
+.join-page input {
+  margin-top: 5%;
+  padding: 0.5rem;
+  border: 2px solid #d1d1d1;
+  outline: none;
+  border-radius: 10px;
+  width: 70%;
+  font-size: 18px;
+  transition-duration: 0.4s;
+  z-index: 100;
+}
+
+.join-page input:focus {
+  border-color: #2cbdc7;
+}
+
 .join-page .join-btns-div {
   width: 70%;
   display: flex;
   justify-content: space-between;
   text-align: center;
   margin: auto;
-  padding: 4rem 0.5rem;
+  padding: 2rem 0.5rem;
 }
 
-.join-page .join-btns-div button {
+.join-page .join-btns-div .btn {
   margin: auto;
   padding: 0.5rem 1rem;
   border-radius: 10px;
@@ -61,7 +77,7 @@
   transition-duration: 0.4s;
 }
 
-.join-page .join-btns-div button:hover {
+.join-page .join-btns-div .btn:hover {
   background-color: #1b8299;
   color: white;
 }

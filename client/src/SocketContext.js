@@ -15,6 +15,7 @@ const ContextProvider = ({ children }) => {
   console.log(history);
   const [socketState, setSocketState] = useState(socket);
   const [me, setMe] = useState('');
+  const [newMeet, setNewMeet] = useState(false);
   const [call, setCall] = useState({});
   const [stream, setStream] = useState(null);
   const [callAccepted, setCallAccepted] = useState(false);
@@ -23,7 +24,7 @@ const ContextProvider = ({ children }) => {
   const [otherUser, setOtherUser] = useState(null);
   const [documentId, setDocumentId] = useState(v4());
   const [myVideoStatus, setMyVideoStatus] = useState(true);
-  const [userVideoStatus, setUserVideoStatus] = useState(false);
+  const [userVideoStatus, setUserVideoStatus] = useState(true);
   const [myMicStatus, setMyMicStatus] = useState(false);
   const [userMicStatus, setUserMicStatus] = useState(false);
   const [showEditor, setShowEditor] = useState(false);
@@ -35,7 +36,7 @@ const ContextProvider = ({ children }) => {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-
+  const [otherUserStream, setOtherUserStream] = useState(null);
   // useEffect(() => {
   //   if (myVideoStatus === false) return;
   //   navigator.mediaDevices
@@ -115,6 +116,7 @@ const ContextProvider = ({ children }) => {
 
     socket.on('callended', () => {
       setCall(null);
+      message.info('User disconnected from call');
       setCallAccepted(false);
       setCallEnded(true);
     });
@@ -142,11 +144,13 @@ const ContextProvider = ({ children }) => {
         type: 'both',
         mediaStatus: [myMicStatus, myVideoStatus],
       });
+      message.info(`${name} joined with you`)
     });
 
     peer.on('stream', (currentStream) => {
-      console.log(userVideo);
-      if (userVideo.current) userVideo.current.srcObject = currentStream;
+      console.log(currentStream);
+      // if (userVideo.current) userVideo.current.srcObject = currentStream;
+      setOtherUserStream(currentStream);
     });
     peer.signal(call.signal);
     connectionRef.current = peer;
@@ -167,7 +171,8 @@ const ContextProvider = ({ children }) => {
     });
     peer.on('stream', (currentStream) => {
       // console.log(currentStream);
-      if (userVideo.current) userVideo.current.srcObject = currentStream;
+      // if (userVideo.current) userVideo.current.srcObject = currentStream;
+      setOtherUserStream(currentStream);
     });
 
     socket.on('callaccepted', (signal) => {
@@ -180,6 +185,7 @@ const ContextProvider = ({ children }) => {
       });
       setCallAccepted(true);
       peer.signal(signal);
+      message.info(`${name} joined with you`)
     });
 
     connectionRef.current = peer;
@@ -188,6 +194,7 @@ const ContextProvider = ({ children }) => {
   const endCall = () => {
     socket.emit('callended', otherUser);
     setCallEnded(true);
+    setCallAccepted(false);
     if (connectionRef.current) connectionRef.current.destroy();
     history.push('/');
     // window.location.reload();
@@ -279,6 +286,10 @@ const ContextProvider = ({ children }) => {
         setNotesOpen,
         meetingCode,
         setMeetingCode,
+        otherUserStream,
+        setOtherUserStream,
+        newMeet,
+        setNewMeet,
       }}
     >
       {children}

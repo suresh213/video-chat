@@ -39,15 +39,18 @@ const Home = (props) => {
     setMeetingCode,
     setCallEnded,
     setCallAccepted,
+    newMeet, setNewMeet
   } = useContext(SocketContext);
 
   useEffect(() => {
     setCallEnded(true);
     setCallAccepted(false);
+    console.log(stream)
     if (stream) {
       stream.getTracks().forEach((track) => track.stop());
     }
     setStream(null);
+    console.log(stream)
     document.getElementById('video').play();
   }, []);
 
@@ -64,7 +67,7 @@ const Home = (props) => {
           <div className='left-div'>
             <div className='contents'>
               <div className='start-meet'>
-                <Link className='home-btn' to='meet'>
+                <Link className='home-btn' to='join' onClick={()=>{setNewMeet(true)}}>
                   Start Meeting
                 </Link>
               </div>

@@ -133,6 +133,7 @@ const Options = ({ children }) => {
                 <CloseIcon />
               </button>
             </div>
+            <h3 className="name">{name}</h3>
             <div>
               <CopyToClipboard
                 text={me}

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import { SocketContext } from '../../SocketContext';
 import Editor from '../Editor/Editor';
 import Options from '../Options/Options';
@@ -9,7 +9,8 @@ import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';
-
+import { Link, Redirect } from 'react-router-dom';
+import {message} from 'antd'
 const Join = (props) => {
   const {
     me,
@@ -37,10 +38,16 @@ const Join = (props) => {
     setMeetingCode,
     setCallEnded,
     setCallAccepted,
+    newMeet,
+    setNewMeet,
   } = useContext(SocketContext);
-
+  const myPreviewVideo = useRef();
   useEffect(() => {
-    if (stream) return;
+    if (!newMeet && meetingCode.length === 0) {
+      props.history.push('/');
+      return;
+    }
+    // if (stream) return;
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
@@ -50,8 +57,8 @@ const Join = (props) => {
         // res.getAudioTracks()[0].enabled = false;
 
         setStream(res);
-        console.log(myVideo);
-        myVideo.current.srcObject = res;
+        console.log(myPreviewVideo);
+        myPreviewVideo.current.srcObject = res;
       });
   }, []);
 
@@ -74,14 +81,40 @@ const Join = (props) => {
               width='250'
               height='140'
               src=''
-              ref={myVideo}
+              ref={myPreviewVideo}
               autoPlay
               muted
             ></video>
           </div>
+          <input
+            type='text'
+            placeholder='Enter your name'
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value.trim());
+            }}
+          />
           <div className='join-btns-div'>
-            <button onClick={() => callUser(meetingCode)}>Join now</button>
+            {newMeet ? (
+              <button
+                className='btn'
+                onClick={() => {
+                  if (name.length === 0) {
+                    message.error('Please enter your name')
+                    return;
+                  }
+                  props.history.push('meet');
+                }}
+              >
+                Start new meeting
+              </button>
+            ) : (
+              <button className='btn' onClick={() => callUser(meetingCode)}>
+                Join now
+              </button>
+            )}
             <button
+              className='btn'
               onClick={() => {
                 setMeetingCode('');
                 props.history.push('/');

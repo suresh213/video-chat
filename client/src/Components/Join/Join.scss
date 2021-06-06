@@ -24,7 +24,7 @@
     }
   }
 .join-page {
-    padding-top:10% ;
+    padding-top:5% ;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,6 +36,21 @@
       width: 50%;
       height: 40%;
     }
+    
+  }
+  input {
+    margin-top: 5%;
+    padding: 0.5rem;
+    border: 2px solid rgb(209, 209, 209);
+    outline: none;
+    border-radius: 10px;
+    width: 70%;
+    font-size: 18px;
+    transition-duration: 0.4s;
+    &:focus {
+      border-color: rgb(44, 189, 199);
+    }
+    z-index: 100;
   }
   .join-btns-div {
       width: 70%;
@@ -43,8 +58,8 @@
       justify-content: space-between;
       text-align: center;
       margin: auto;
-      padding: 4rem 0.5rem;
-    button {
+      padding: 2rem 0.5rem;
+    .btn {
       margin: auto;
       padding: 0.5rem 1rem;
       border-radius: 10px;
