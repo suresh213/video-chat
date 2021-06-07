@@ -49,7 +49,7 @@ const Video = (props) => {
   useEffect(() => {
     resize();
     window.addEventListener('resize', resize);
-  },[])
+  }, []);
 
   useEffect(() => {
     if (stream) {
@@ -118,14 +118,14 @@ const Video = (props) => {
               <div className='video-frame'>
                 {userMicStatus ? <MicIcon /> : <MicOffIcon />}
                 {/* {userVideoStatus ? ( */}
-                  <video
-                    width='250'
-                    height='140'
-                    src=''
-                    ref={userVideo}
-                    autoPlay
-                    muted
-                  ></video>
+                <video
+                  width='250'
+                  height='140'
+                  src=''
+                  ref={userVideo}
+                  autoPlay
+                  muted
+                ></video>
                 {/* ) : (
                   <img src={homeIcon} />
                 )} */}
@@ -135,10 +135,10 @@ const Video = (props) => {
           </div>
         </div>
         <div className='bar'>
-          <Options history={props.history}/>
+          <Options history={props.history} />
         </div>
       </div>
-      {showEditor && !mobileView&&(
+      {!mobileView && (
         <div className='right'>
           <div className='editor-div'>
             <Editor />

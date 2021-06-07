@@ -7,6 +7,15 @@
   width: 30%;
 }
 
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
 .flex-div .left .video-div {
   grid-row-gap: 1rem;
   display: flex;
@@ -68,6 +77,11 @@
   width: 70%;
   background-color: #ebebeb;
   border-left: 1px solid #d5d5d5;
+  overflow: hidden;
+}
+
+.flex-div .right .editor-div {
+  overflow: hidden;
 }
 
 .hide-editor {
@@ -78,6 +92,16 @@
   width: 100%;
   background-color: #e8e8e8;
   height: 100%;
+  animation: 0.5s slide-right;
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -70%;
+  }
+  to {
+    margin-left: 0%;
+  }
 }
 
 .hide-editor .left .video-div .video-frames {
@@ -147,5 +171,19 @@
   .hide-editor .left .video-div .video-frames .video-frame video {
     width: 100%;
     height: 100%;
+  }
+}
+
+.hide-editor .right {
+  display: none;
+  animation: 1s slide-right;
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -70%;
+  }
+  to {
+    margin-left: 0%;
   }
 }

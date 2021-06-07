@@ -5,7 +5,7 @@
   .left {
     width: 30%;
     // background-color: grey;
-    animation: 1s slide-right;
+    // animation: 1s slide-right;
     @keyframes slide-right {
       from {
         margin-left: -100%;
@@ -104,10 +104,10 @@
     width: 100%;
     background-color: rgb(232, 232, 232);
     height: 100%;
-    animation: 1s slide-right;
+    animation: 0.5s slide-right;
     @keyframes slide-right {
       from {
-        margin-left: -100%;
+        margin-left: -70%;
       }
       to {
         margin-left: 0%;
@@ -191,6 +191,18 @@
             }
           }
         }
+      }
+    }
+  }
+  .right{
+    display:none;
+    animation: 1s slide-right;
+    @keyframes slide-right {
+      from {
+        margin-left: -70%;
+      }
+      to {
+        margin-left: 0%;
       }
     }
   }

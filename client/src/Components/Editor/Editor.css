@@ -36,6 +36,7 @@ body {
 .editor {
   height: 100vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .editor .ql-editor {

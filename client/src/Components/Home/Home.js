@@ -11,7 +11,7 @@ import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
 import { Link, Redirect } from 'react-router-dom';
 import { message } from 'antd';
-import { setDatas } from '../../setDatas';
+
 const Home = (props) => {
   const {
     stream,
@@ -20,14 +20,45 @@ const Home = (props) => {
     setMeetingCode,
     setCallEnded,
     setCallAccepted,
+    setName,
+    setShowEditor,
+    setShowChatBox,
+    setMessages,
+    setNotes,
+    setNotesOpen,
+    setOtherUserStream,
     setNewMeet,
+    setOtherUser,
+    setMyVideoStatus,
+    setMyMicStatus,
+    setUserMicStatus,
+    setUserVideoStatus,
   } = useContext(SocketContext);
+
+  const setDatas = () => {
+    setCallAccepted(false);
+    setCallEnded(true);
+    setName('');
+    setStream(null);
+    setShowEditor(false);
+    setShowChatBox(false);
+    setMessages([]);
+    setNotes('');
+    setNotesOpen(false);
+    setMeetingCode(null);
+    setOtherUserStream(null);
+    setNewMeet(false);
+    setOtherUser(null);
+    setMyVideoStatus(true);
+    setMyMicStatus(false);
+    setUserMicStatus(false);
+    setUserVideoStatus(false);
+  };
 
   useEffect(() => {
     if (stream) {
       stream.getTracks().forEach((track) => track.stop());
     }
-
     setDatas();
     // document.getElementById('video').play();
   }, []);
