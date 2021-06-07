@@ -114,7 +114,7 @@ const Options = (props) => {
           onClick={() => setShowChatBox(!showChatBox)}
         >
           <ChatIcon />
-          <span class='tooltiptext'>Chat</span>
+          <span className='tooltiptext'>Chat</span>
         </button>
 
         <Notes />

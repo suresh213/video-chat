@@ -5,7 +5,10 @@ import { v4 } from 'uuid';
 import { message } from 'antd';
 const SocketContext = createContext();
 
-const socket = io('http://localhost:5000');
+
+const BACKEND_URL='https://video-chat-meet-backend.herokuapp.com'
+// const BACKEND_URL='http://localhost:5000'
+const socket = io(BACKEND_URL);
 
 const ContextProvider = ({ children }) => {
   const [socketState, setSocketState] = useState(socket);
@@ -14,9 +17,10 @@ const ContextProvider = ({ children }) => {
   const [call, setCall] = useState({});
   const [stream, setStream] = useState(null);
   const [callAccepted, setCallAccepted] = useState(false);
-  const [callEnded, setCallEnded] = useState(true);
+  const [callEnded, setCallEnded] = useState(false);
   const [name, setName] = useState('');
   const [otherUser, setOtherUser] = useState(null);
+  const [otherUserName, setOtherUserName] = useState('');
   const [documentId, setDocumentId] = useState(v4());
   const [myVideoStatus, setMyVideoStatus] = useState(true);
   const [userVideoStatus, setUserVideoStatus] = useState(true);
@@ -28,6 +32,7 @@ const ContextProvider = ({ children }) => {
   const [notes, setNotes] = useState('');
   const [meetingCode, setMeetingCode] = useState('');
   const [notesOpen, setNotesOpen] = useState(false);
+
   const [otherUserStream, setOtherUserStream] = useState(null);
   const myVideo = useRef();
   const userVideo = useRef();
@@ -49,6 +54,7 @@ const ContextProvider = ({ children }) => {
         isRecievedCall: true,
         documentId,
       });
+      setOtherUserName(callerName)
     });
 
     socket.on('updateUserMedia', ({ type, mediaStatus }) => {
@@ -85,6 +91,7 @@ const ContextProvider = ({ children }) => {
 
     peer.on('signal', (data) => {
       socket.emit('answercall', {
+        name,
         signal: data,
         to: call.from,
         documentId: call.documentId,
@@ -122,7 +129,7 @@ const ContextProvider = ({ children }) => {
       setOtherUserStream(currentStream);
     });
 
-    socket.on('callaccepted', (signal) => {
+    socket.on('callaccepted', (signal,userName) => {
       socket.emit('updateMyMedia', {
         data: {
           type: 'both',
@@ -130,6 +137,7 @@ const ContextProvider = ({ children }) => {
         },
         userToUpdate: id,
       });
+      setOtherUserName(userName)
       setCallAccepted(true);
       peer.signal(signal);
       message.info(`${name} joined with you`);
@@ -216,6 +224,7 @@ const ContextProvider = ({ children }) => {
         setMyMicStatus,
         setUserMicStatus,
         setMyVideoStatus,
+        otherUserName, setOtherUserName
       }}
     >
       {children}

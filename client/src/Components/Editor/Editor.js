@@ -47,6 +47,7 @@ const Editor = () => {
   useEffect(() => {
     if (!socket || !quill) return;
     const handler = (delta) => {
+      // console.log(delta)
       quill.updateContents(delta);
     };
 

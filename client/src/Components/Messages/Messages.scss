@@ -1,11 +1,24 @@
 @import '../../assets/styles/_mixins.scss';
 .outer-div {
   height: 40vh;
-  width: 20vw;
+  width: 30vw;
   // background-color: black;
   @include mobile {
     height: 60vh;
     width: 70vw;
+  }
+}
+.btn-div {
+  display: flex;
+  justify-content: space-between;
+  h3 {
+    padding: 0 10px;
+  }
+  button {
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 }
 .messages {
@@ -53,7 +66,7 @@
   align-items: center;
   margin-top: 20px;
   input {
-    width: 70%;
+    width: 80%;
     border: 1px solid grey;
     outline: none;
     border-radius: 10px;

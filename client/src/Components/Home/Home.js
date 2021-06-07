@@ -34,11 +34,12 @@ const Home = (props) => {
     setMyMicStatus,
     setUserMicStatus,
     setUserVideoStatus,
+    setOtherUserName,
   } = useContext(SocketContext);
 
   const setDatas = () => {
     setCallAccepted(false);
-    setCallEnded(true);
+    setCallEnded(false);
     setName('');
     setStream(null);
     setShowEditor(false);
@@ -54,6 +55,7 @@ const Home = (props) => {
     setMyMicStatus(false);
     setUserMicStatus(false);
     setUserVideoStatus(false);
+    setOtherUserName('');
   };
 
   useEffect(() => {

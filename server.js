@@ -27,10 +27,11 @@ io.on('connection', (socket) => {
       type: data.type,
       mediaStatus: data.mediaStatus,
     });
-    io.to(data.to).emit('callaccepted', data.signal);
+    io.to(data.to).emit('callaccepted', data.signal,data.name);
   });
 
   socket.on('send-changes', (delta, userId) => {
+    // console.log(userId)
     io.to(userId).emit('recieve-changes', delta);
   });
 

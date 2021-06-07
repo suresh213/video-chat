@@ -10,7 +10,10 @@ import { APP_NAME } from '../../constants';
 
 const Video = (props) => {
   const {
+    me,
+    call,
     callAccepted,
+    callEnded,
     name,
     myVideo,
     userVideo,
@@ -22,6 +25,8 @@ const Video = (props) => {
     userMicStatus,
     showEditor,
     otherUserStream,
+    otherUser,
+    otherUserName
   } = useContext(SocketContext);
 
   const [mobileView, setMobileView] = useState(false);
@@ -34,7 +39,7 @@ const Video = (props) => {
     resize();
     window.addEventListener('resize', resize);
   }, []);
-
+// console.log(me,otherUser)
   useEffect(() => {
     if (stream) {
       myVideo.current.srcObject = stream;
@@ -51,6 +56,7 @@ const Video = (props) => {
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
   }, [otherUserStream, userVideoStatus]);
+
 
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
@@ -91,7 +97,7 @@ const Video = (props) => {
                   /> */}
                 </>
               )}
-              <div className='name'>{name}</div>
+              <div className='name'>You</div>
             </div>
 
             {callAccepted && (
@@ -109,7 +115,7 @@ const Video = (props) => {
                 {/* ) : (
                   <img src={homeIcon} />
                 )} */}
-                <div className='name'>{name}</div>
+                <div className='name'>{otherUserName}</div>
               </div>
             )}
           </div>
@@ -118,7 +124,7 @@ const Video = (props) => {
           <Options history={props.history} />
         </div>
       </div>
-      {!mobileView && (
+      {!mobileView && showEditor&&(
         <div className='right'>
           <div className='editor-div'>
             <Editor />

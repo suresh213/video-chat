@@ -10,6 +10,11 @@ import {
 } from 'react-router-dom';
 
 function App() {
+
+  // useEffect(() => {
+  //   if (!navigator.onLine) alert('Connect to internet!');
+  // }, [navigator]);
+
   return (
     <ContextProvider>
       <Router>
