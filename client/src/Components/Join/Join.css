@@ -1,5 +1,5 @@
 .navbar {
-  background-color: whitesmoke;
+  background-color: black;
   display: flex;
   justify-content: space-between;
   height: 8vh;
@@ -8,7 +8,7 @@
 .navbar .title-div {
   align-items: center;
   padding: 0 20px;
-  width: 10%;
+  width: 90%;
   display: flex;
   justify-content: flex-start;
   grid-column-gap: 10px;
@@ -21,6 +21,7 @@
 .navbar .title-div h3 {
   font-size: 22px;
   font-weight: 400;
+  color: white;
   margin: auto 0;
 }
 
@@ -80,4 +81,20 @@
 .join-page .join-btns-div .btn:hover {
   background-color: #1b8299;
   color: white;
+}
+
+@media (max-width: 576px) {
+  .join-page .join-btns-div {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .join-page {
+    margin-top: 20%;
+  }
+  .join-page .video-div video {
+    width: 70%;
+    height: 50%;
+  }
 }

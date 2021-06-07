@@ -1,47 +1,24 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext,useEffect, useRef } from 'react';
 import { SocketContext } from '../../SocketContext';
-import Editor from '../Editor/Editor';
-import Options from '../Options/Options';
-import Notification from '../Notification/Notification';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import VideocamOffIcon from '@material-ui/icons/VideocamOff';
-import MicIcon from '@material-ui/icons/Mic';
-import MicOffIcon from '@material-ui/icons/MicOff';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';
-import { Link, Redirect } from 'react-router-dom';
-import {message} from 'antd'
+import { message } from 'antd';
+import { APP_NAME } from '../../constants';
+
 const Join = (props) => {
   const {
-    me,
-    call,
     callAccepted,
-    callEnded,
     name,
     setName,
-    myVideo,
-    userVideo,
-    stream,
     setStream,
-    answerCall,
     callUser,
-    endCall,
-    myVideoStatus,
-    myMicStatus,
-    userVideoStatus,
-    userMicStatus,
-    updateMicStatus,
-    updateVideoStatus,
-    showEditor,
-    setShowEditor,
     meetingCode,
     setMeetingCode,
-    setCallEnded,
-    setCallAccepted,
     newMeet,
-    setNewMeet,
   } = useContext(SocketContext);
+
   const myPreviewVideo = useRef();
+  
   useEffect(() => {
     if (!newMeet && meetingCode.length === 0) {
       props.history.push('/');
@@ -51,13 +28,7 @@ const Join = (props) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
-        console.log(res);
-
-        // res.getVideoTracks()[0].enabled = false;
-        // res.getAudioTracks()[0].enabled = false;
-
         setStream(res);
-        console.log(myPreviewVideo);
         myPreviewVideo.current.srcObject = res;
       });
   }, []);
@@ -71,7 +42,7 @@ const Join = (props) => {
       <div className='navbar'>
         <div className='title-div'>
           <img src={homeIcon} alt='' />
-          <h3>Meet</h3>
+          <h3>{APP_NAME}</h3>
         </div>
       </div>
       <div className='join-page'>
@@ -100,7 +71,7 @@ const Join = (props) => {
                 className='btn'
                 onClick={() => {
                   if (name.length === 0) {
-                    message.error('Please enter your name')
+                    message.error('Please enter your name');
                     return;
                   }
                   props.history.push('meet');

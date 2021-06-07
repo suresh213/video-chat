@@ -9,8 +9,9 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { message } from 'antd';
+import { APP_NAME } from '../../constants';
 
 const Home = (props) => {
   const {
@@ -60,7 +61,6 @@ const Home = (props) => {
       stream.getTracks().forEach((track) => track.stop());
     }
     setDatas();
-    // document.getElementById('video').play();
   }, []);
 
   return (
@@ -68,7 +68,7 @@ const Home = (props) => {
       <div className='navbar'>
         <div className='title-div'>
           <img src={homeIcon} alt='' />
-          <h3>Meet</h3>
+          <h3>{APP_NAME}</h3>
         </div>
       </div>
       <div className='body-div'>
@@ -90,7 +90,7 @@ const Home = (props) => {
                 <input
                   type='text'
                   placeholder='Enter meeting code'
-                  value={meetingCode}
+                  value={meetingCode || ''}
                   onChange={(e) => {
                     setMeetingCode(e.target.value);
                   }}
@@ -143,7 +143,6 @@ const Home = (props) => {
           </div>
         </div>
       </div>
-      {/* <div className='footer'></div> */}
       <Footer />
     </div>
   );

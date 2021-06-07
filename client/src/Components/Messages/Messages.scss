@@ -48,6 +48,9 @@
 }
 .inputs {
   // width: 30vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
   input {
     width: 70%;
@@ -56,15 +59,18 @@
     border-radius: 10px;
     padding: 5px;
   }
-  Button {
-    margin-left: 1vw;
-  }
+  // Button {
+  //   margin-left: 1vw;
+  // }
   // background-color: black;
   @include mobile {
     input {
-      width: 75%;
+      width: 70%;
+    }
+    // Button {
+    //   margin-left: 2vw;
+    // }
   }
-}
 }
 .scrollbar {
   overflow: auto;

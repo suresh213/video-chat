@@ -49,6 +49,9 @@
 }
 
 .inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-top: 20px;
 }
 
@@ -60,13 +63,9 @@
   padding: 5px;
 }
 
-.inputs Button {
-  margin-left: 1vw;
-}
-
 @media (max-width: 576px) {
   .inputs input {
-    width: 75%;
+    width: 70%;
   }
 }
 

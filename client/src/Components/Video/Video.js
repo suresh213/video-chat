@@ -2,44 +2,28 @@ import React, { useContext, useState, useEffect } from 'react';
 import { SocketContext } from '../../SocketContext';
 import Editor from '../Editor/Editor';
 import Options from '../Options/Options';
-import Notification from '../Notification/Notification';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import VideocamOffIcon from '@material-ui/icons/VideocamOff';
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
-import { Link, Redirect } from 'react-router-dom';
-
-import homeIcon from '../../assets/home.png';
+import homeIcon1 from '../../assets/video-call.png';
+import { APP_NAME } from '../../constants';
 
 const Video = (props) => {
   const {
-    me,
-    call,
     callAccepted,
-    callEnded,
     name,
-    setName,
     myVideo,
     userVideo,
     stream,
     setStream,
-    answerCall,
-    callUser,
-    endCall,
     myVideoStatus,
     myMicStatus,
     userVideoStatus,
     userMicStatus,
-    updateMicStatus,
-    updateVideoStatus,
     showEditor,
-    setShowEditor,
     otherUserStream,
-    setOtherUserStream,
   } = useContext(SocketContext);
 
-  const [state, setState] = useState();
   const [mobileView, setMobileView] = useState(false);
 
   const resize = () => {
@@ -59,27 +43,24 @@ const Video = (props) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
-        console.log(res);
-
-        // res.getVideoTracks()[0].enabled = false;
-        // res.getAudioTracks()[0].enabled = false;
-
         setStream(res);
-        console.log(myVideo);
         myVideo.current.srcObject = res;
       });
   }, []);
 
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
-    console.log(otherUserStream);
-    console.log(userVideo.current);
-    console.log(callEnded);
   }, [otherUserStream, userVideoStatus]);
 
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
+        <div className='navbar'>
+          <div className='title-div'>
+            <img src={homeIcon1} alt='' />
+            <h3>{APP_NAME}</h3>
+          </div>
+        </div>
         <div className='video-div'>
           {' '}
           <div className='video-frames'>
@@ -113,7 +94,6 @@ const Video = (props) => {
               <div className='name'>{name}</div>
             </div>
 
-            {console.log('user mic ', callAccepted, callEnded)}
             {callAccepted && (
               <div className='video-frame'>
                 {userMicStatus ? <MicIcon /> : <MicOffIcon />}
@@ -124,7 +104,7 @@ const Video = (props) => {
                   src=''
                   ref={userVideo}
                   autoPlay
-                  muted
+                  // muted
                 ></video>
                 {/* ) : (
                   <img src={homeIcon} />
