@@ -19,7 +19,7 @@ const ContextProvider = ({ children }) => {
   const [call, setCall] = useState({});
   const [stream, setStream] = useState(null);
   const [callAccepted, setCallAccepted] = useState(false);
-  const [callEnded, setCallEnded] = useState(false);
+  const [callEnded, setCallEnded] = useState(true);
   const [name, setName] = useState('');
   const [otherUser, setOtherUser] = useState(null);
   const [documentId, setDocumentId] = useState(v4());
@@ -33,10 +33,11 @@ const ContextProvider = ({ children }) => {
   const [notes, setNotes] = useState('');
   const [meetingCode, setMeetingCode] = useState('');
   const [notesOpen, setNotesOpen] = useState(false);
+  const [otherUserStream, setOtherUserStream] = useState(null);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
-  const [otherUserStream, setOtherUserStream] = useState(null);
+  
   // useEffect(() => {
   //   if (myVideoStatus === false) return;
   //   navigator.mediaDevices
@@ -291,6 +292,27 @@ const ContextProvider = ({ children }) => {
         setOtherUserStream,
         newMeet,
         setNewMeet,
+        setOtherUser,
+        myVideoStatus,
+        setMyVideoStatus,
+        userVideoStatus,
+        setUserVideoStatus,
+        myMicStatus,
+        setMyMicStatus,
+        userMicStatus,
+        setUserMicStatus,
+        showEditor,
+        setShowEditor,
+        showChatBox,
+        setShowChatBox,
+        messages,
+        setMessages,
+        notes,
+        setNotes,
+        meetingCode,
+        setMeetingCode,
+        notesOpen,
+        setNotesOpen,
       }}
     >
       {children}

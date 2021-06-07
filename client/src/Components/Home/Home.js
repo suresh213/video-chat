@@ -11,47 +11,25 @@ import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
 import { Link, Redirect } from 'react-router-dom';
 import { message } from 'antd';
-
+import { setDatas } from '../../setDatas';
 const Home = (props) => {
   const {
-    me,
-    call,
-    callAccepted,
-    callEnded,
-    name,
-    setName,
-    myVideo,
-    userVideo,
     stream,
     setStream,
-    answerCall,
-    callUser,
-    endCall,
-    myVideoStatus,
-    myMicStatus,
-    userVideoStatus,
-    userMicStatus,
-    updateMicStatus,
-    updateVideoStatus,
-    showEditor,
-    setShowEditor,
     meetingCode,
     setMeetingCode,
     setCallEnded,
     setCallAccepted,
-    newMeet, setNewMeet
+    setNewMeet,
   } = useContext(SocketContext);
 
   useEffect(() => {
-    setCallEnded(true);
-    setCallAccepted(false);
-    console.log(stream)
     if (stream) {
       stream.getTracks().forEach((track) => track.stop());
     }
-    setStream(null);
-    console.log(stream)
-    document.getElementById('video').play();
+
+    setDatas();
+    // document.getElementById('video').play();
   }, []);
 
   return (
@@ -67,7 +45,13 @@ const Home = (props) => {
           <div className='left-div'>
             <div className='contents'>
               <div className='start-meet'>
-                <Link className='home-btn' to='join' onClick={()=>{setNewMeet(true)}}>
+                <Link
+                  className='home-btn'
+                  to='join'
+                  onClick={() => {
+                    setNewMeet(true);
+                  }}
+                >
                   Start Meeting
                 </Link>
               </div>
@@ -121,7 +105,7 @@ const Home = (props) => {
               src={homeVideo}
               id='video'
               alt='video'
-              autoplay
+              autoPlay
               muted
               loop
             ></video>

@@ -168,7 +168,7 @@ const Editor = () => {
 
   return (
     <>
-      <div className='editor' ref={editorRef}></div>
+      <div className='editor slide-left' ref={editorRef}></div>
     </>
   );
 };

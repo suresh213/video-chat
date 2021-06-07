@@ -5,6 +5,15 @@
   .left {
     width: 30%;
     // background-color: grey;
+    animation: 1s slide-right;
+    @keyframes slide-right {
+      from {
+        margin-left: -100%;
+      }
+      to {
+        margin-left: 0%;
+      }
+    }
     .video-div {
       // display: block;
       // align-items: center;
@@ -83,7 +92,9 @@
     width: 70%;
     background-color: rgb(235, 235, 235);
     border-left: 1px solid rgb(213, 213, 213);
+    overflow: hidden;
     .editor-div {
+      overflow: hidden;
     }
   }
 }
@@ -93,6 +104,15 @@
     width: 100%;
     background-color: rgb(232, 232, 232);
     height: 100%;
+    animation: 1s slide-right;
+    @keyframes slide-right {
+      from {
+        margin-left: -100%;
+      }
+      to {
+        margin-left: 0%;
+      }
+    }
     .video-div {
       // height: 100%;
       .video-frames {

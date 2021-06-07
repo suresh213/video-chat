@@ -151,6 +151,7 @@ const Options = (props) => {
             </div>
             <h3 className='name'>{name}</h3>
             <div>
+              {console.log(me)}
               <CopyToClipboard
                 text={me}
                 onCopy={() => {

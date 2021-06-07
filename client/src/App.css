@@ -89,3 +89,28 @@
   transition-duration: 1s;
   visibility: visible;
 }
+
+
+.slide-left {
+  animation: 0.5s slide-left;
+}
+@keyframes slide-left {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.slide-right {
+  animation: 1s slide-right;
+}
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
