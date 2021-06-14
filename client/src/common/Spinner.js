@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import spinner from './spin1.gif';
-const Spinner = () => {
+const Spinner = (props) => {
   return (
     <div className='spinner'>
       <img
@@ -13,10 +13,13 @@ const Spinner = () => {
           justifyContent: 'center',
           alignItems: 'center',
           textAlign: 'center',
+          marginTop: `${props.starting ? '20%' : '0%'}`,
         }}
         alt='Loading...'
       ></img>
-      <h2 style={{ textAlign: 'center' }}>Loading your video...</h2>
+      <h2 style={{ textAlign: 'center' }}>
+        {props.starting ? 'Starting your meeting...' : 'Loading your video...'}
+      </h2>
     </div>
   );
 };

@@ -31,6 +31,7 @@ const Video = (props) => {
   } = useContext(SocketContext);
 
   const [mobileView, setMobileView] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const resize = () => {
     setMobileView(window.innerWidth <= 600);
@@ -41,7 +42,17 @@ const Video = (props) => {
     window.addEventListener('resize', resize);
   }, []);
   // console.log(me,otherUser)
+
   useEffect(() => {
+    if (loading) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    if(loading) return
     if (stream) {
       myVideo.current.srcObject = stream;
       return;
@@ -53,12 +64,15 @@ const Video = (props) => {
         setStream(res);
         myVideo.current.srcObject = res;
       });
-  }, []);
+  }, [loading]);
 
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
   }, [otherUserStream, userVideoStatus]);
 
+  if (loading) {
+    return <Spinner starting/>;
+  }
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
