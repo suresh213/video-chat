@@ -1,6 +1,5 @@
 .footer {
   height: 5vh;
-  z-index: -1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,9 +19,11 @@
 .footer img {
   height: 17px;
   width: 17px;
+  z-index: 1;
 }
 
 .footer svg {
+  z-index: 1;
   margin-top: 0px;
   margin-left: 30px;
   padding: 0px;

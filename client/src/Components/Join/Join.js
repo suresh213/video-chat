@@ -1,15 +1,17 @@
-import React, { useContext,useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { SocketContext } from '../../SocketContext';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';
 import { message } from 'antd';
 import { APP_NAME } from '../../constants';
+import Spinner from '../../common/Spinner';
 
 const Join = (props) => {
   const {
     callAccepted,
     name,
     setName,
+    stream,
     setStream,
     callUser,
     meetingCode,
@@ -18,7 +20,7 @@ const Join = (props) => {
   } = useContext(SocketContext);
 
   const myPreviewVideo = useRef();
-  
+
   useEffect(() => {
     if (!newMeet && meetingCode.length === 0) {
       props.history.push('/');
@@ -28,6 +30,7 @@ const Join = (props) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
+        res.getAudioTracks()[0].enabled = false;
         setStream(res);
         myPreviewVideo.current.srcObject = res;
       });
@@ -48,52 +51,60 @@ const Join = (props) => {
       <div className='join-page'>
         <div>
           <div className='video-div'>
-            <video
-              width='250'
-              height='140'
-              src=''
-              ref={myPreviewVideo}
-              autoPlay
-              muted
-            ></video>
-          </div>
-          <input
-            type='text'
-            placeholder='Enter your name'
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value.trim());
-            }}
-          />
-          <div className='join-btns-div'>
-            {newMeet ? (
-              <button
-                className='btn'
-                onClick={() => {
-                  if (name.length === 0) {
-                    message.error('Please enter your name');
-                    return;
-                  }
-                  props.history.push('meet');
-                }}
-              >
-                Start new meeting
-              </button>
+            {stream ? (
+              <video
+                width='250'
+                height='140'
+                src=''
+                ref={myPreviewVideo}
+                autoPlay
+                muted
+              ></video>
             ) : (
-              <button className='btn' onClick={() => callUser(meetingCode)}>
-                Join now
-              </button>
+              <Spinner />
             )}
-            <button
-              className='btn'
-              onClick={() => {
-                setMeetingCode('');
-                props.history.push('/');
-              }}
-            >
-              Cancel
-            </button>
           </div>
+          {stream && (
+            <>
+              <input
+                type='text'
+                placeholder='Enter your name'
+                value={name}
+                onChange={(e) => {
+                  setName(e.target.value.trim());
+                }}
+              />
+              <div className='join-btns-div'>
+                {newMeet ? (
+                  <button
+                    className='btn'
+                    onClick={() => {
+                      if (name.length === 0) {
+                        message.error('Please enter your name');
+                        return;
+                      }
+                      props.history.push('meet');
+                    }}
+                  >
+                    Start new meeting
+                  </button>
+                ) : (
+                  <button className='btn' onClick={() => callUser(meetingCode)}>
+                    Join now
+                  </button>
+                )}
+                <button
+                  className='btn'
+                  onClick={() => {
+                    setMeetingCode('');
+                    props.history.push('/');
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

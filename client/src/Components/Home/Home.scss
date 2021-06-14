@@ -30,6 +30,8 @@
     }
   }
   .body-div {
+    // position: relative;
+    overflow: hidden;
     height: 87vh;
     .flex-box {
       display: flex;
@@ -49,13 +51,23 @@
           margin-left: 30%;
           //   background-color: whitesmoke;
           align-items: center;
-          img {
+          .chat-img {
             width: 120%;
             height: 140%;
             opacity: 0.15;
             top: 20%;
             right: 55%;
             position: absolute;
+          }
+          .note-img {
+            width: 60%;
+            height: 70%;
+            opacity: 0.15;
+            top: 80%;
+            left: 115%;
+            position: absolute;
+            transform: rotate(-30deg);
+            //  z-index: -1;
           }
         }
 
@@ -156,17 +168,28 @@
           z-index: 1;
           width: 100%;
           .contents {
-            position: absolute;
-            
+            // position: absolute;
+
             width: 100%;
             margin-left: 10%;
             top: 25%;
-            img {
+
+            .note-img {
+              width: 50%;
+              height: 50%;
+              opacity: 0.15;
+              top: 40%;
+              left: 65%;
+              position: absolute;
+              transform: rotate(-30deg);
+              //  z-index: -1;
+            }
+            .chat-img {
               width: 90%;
               height: 70%;
               opacity: 0.15;
-              top: 50%;
-              right: 45%;
+              top: 60%;
+              right: 55%;
               position: absolute;
             }
           }
@@ -193,8 +216,8 @@
             }
             z-index: 1;
           }
-          .start-meet{
-              padding:2rem 1rem;
+          .start-meet {
+            padding: 2rem 1rem;
           }
           .join-meet {
             //   margin: auto;

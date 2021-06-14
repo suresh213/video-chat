@@ -79,6 +79,14 @@
           .name {
             font-size: 20px;
           }
+          .hide-img {
+            display: none;
+          }
+          .show-img {
+            position: absolute;
+            bottom: 45%;
+            // right: '50%',
+          }
         }
       }
     }
@@ -101,6 +109,15 @@
 
           margin: auto;
           .video-frame {
+            position: relative;
+            .hide-img {
+              display: none;
+            }
+            .show-img {
+              position: absolute;
+              bottom: 50%;
+              left: 45%;
+            }
             // border: 1px solid blue;
             svg {
               position: relative;
@@ -150,7 +167,8 @@
         flex-direction: row;
         justify-content: center;
         // margin: auto;
-        width: 70%;
+
+        width: 65%;
         // height: 80%;
         .video-frame {
           text-align: center;
@@ -184,6 +202,9 @@
       height: 100%;
       .video-div {
         // height: 100%;
+        padding-bottom: 3rem;
+        height: auto;
+        overflow: scroll;
         .video-frames {
           display: flex;
           align-items: center;

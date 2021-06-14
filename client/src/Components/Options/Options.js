@@ -18,7 +18,42 @@ import ChatIcon from '@material-ui/icons/Chat';
 import Messages from '../Messages/Messages';
 import Notes from '../Notes/Notes';
 import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/core/styles';
+import Switch from '@material-ui/core/Switch';
 
+const AntSwitch = withStyles((theme) => ({
+  root: {
+    width: 30,
+    height: 18,
+    padding: 0,
+    display: 'flex',
+  },
+  switchBase: {
+    padding: 2,
+    color: theme.palette.grey[500],
+    '&$checked': {
+      transform: 'translateX(12px)',
+      color: theme.palette.common.white,
+      '& + $track': {
+        opacity: 1,
+        backgroundColor: theme.palette.primary.main,
+        borderColor: theme.palette.primary.main,
+      },
+    },
+  },
+  thumb: {
+    width: 14,
+    height: 14,
+    boxShadow: 'none',
+  },
+  track: {
+    border: `1px solid ${theme.palette.grey[500]}`,
+    borderRadius: 18 / 2,
+    opacity: 1,
+    backgroundColor: theme.palette.common.white,
+  },
+  checked: {},
+}))(Switch);
 const Options = (props) => {
   const [callId, setCallId] = useState('');
   const {
@@ -85,28 +120,36 @@ const Options = (props) => {
 
         <button
           onClick={() => updateVideoStatus()}
-          className={!myVideoStatus ? 'bg-grey' : 'bg-white'}
+          className={!myVideoStatus ? 'bg-grey tooltip' : 'bg-white tooltip'}
         >
           {myVideoStatus ? <VideocamIcon /> : <VideocamOffIcon />}
+          <span className='tooltiptext'>
+            {myVideoStatus ? 'Turn off video' : 'Turn on video'}
+          </span>
         </button>
         {/* {callAccepted && !callEnded && ( */}
         <button
-          className='red-btn '
+          className='red-btn tooltip'
           type='primary'
           onClick={() => {
             endCall(props.history);
           }}
         >
           <CallEndIcon />
+          <span className='tooltiptext'>End call</span>
         </button>
 
         {/* )} */}
         <button
           onClick={() => updateMicStatus()}
-          className={!myMicStatus ? 'bg-grey' : 'bg-white'}
+          type='primary'
+          className={!myMicStatus ? 'bg-grey tooltip' : 'bg-white tooltip'}
         >
           {' '}
           {myMicStatus ? <MicIcon /> : <MicOffIcon />}
+          <span className='tooltiptext'>
+            {myMicStatus ? 'Turn off mic' : 'Turn on mic'}
+          </span>
         </button>
         <button
           className='tooltip'
@@ -133,9 +176,14 @@ const Options = (props) => {
                 <CloseIcon />
               </button>
             </div>
-            <h3 className='name'>{name}</h3>
+            <h3 className='name'>Hi, {name}</h3>
             <div>
-              <input type='text' readOnly value={me} style={{marginBottom:'1rem'}}/>
+              <input
+                type='text'
+                readOnly
+                value={me}
+                style={{ marginBottom: '1rem' }}
+              />
               <br />
               <CopyToClipboard
                 text={me}
@@ -143,18 +191,28 @@ const Options = (props) => {
                   message.success('Id Copied');
                 }}
               >
-                <Button type='primary'>Share your Id</Button>
+                <Button type='primary'>Copy ID to Clipboard</Button>
               </CopyToClipboard>
             </div>
 
             {!mobileView && (
-              <div>
-                <Button
-                  type='primary'
-                  onClick={() => setShowEditor(!showEditor)}
-                >
-                  {showEditor ? 'Hide Editor' : 'Show Editor'}
-                </Button>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
+                }}
+              >
+                <h3>Interview mode</h3>
+                <AntSwitch
+                  checked={showEditor}
+                  onChange={() => {
+                    message.info(
+                      `Switched to ${showEditor ? 'normal' : 'interview'} mode`
+                    );
+                    setShowEditor(!showEditor);
+                  }}
+                />
               </div>
             )}
 

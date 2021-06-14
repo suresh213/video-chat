@@ -32,6 +32,7 @@
 }
 
 .home .body-div {
+  overflow: hidden;
   height: 87vh;
 }
 
@@ -54,13 +55,23 @@
   align-items: center;
 }
 
-.home .body-div .flex-box .left-div .contents img {
+.home .body-div .flex-box .left-div .contents .chat-img {
   width: 120%;
   height: 140%;
   opacity: 0.15;
   top: 20%;
   right: 55%;
   position: absolute;
+}
+
+.home .body-div .flex-box .left-div .contents .note-img {
+  width: 60%;
+  height: 70%;
+  opacity: 0.15;
+  top: 80%;
+  left: 115%;
+  position: absolute;
+  transform: rotate(-30deg);
 }
 
 .home .body-div .flex-box .left-div input {
@@ -157,17 +168,25 @@
     width: 100%;
   }
   .home .body-div .flex-box .left-div .contents {
-    position: absolute;
     width: 100%;
     margin-left: 10%;
     top: 25%;
   }
-  .home .body-div .flex-box .left-div .contents img {
+  .home .body-div .flex-box .left-div .contents .note-img {
+    width: 50%;
+    height: 50%;
+    opacity: 0.15;
+    top: 40%;
+    left: 65%;
+    position: absolute;
+    transform: rotate(-30deg);
+  }
+  .home .body-div .flex-box .left-div .contents .chat-img {
     width: 90%;
     height: 70%;
     opacity: 0.15;
-    top: 50%;
-    right: 45%;
+    top: 60%;
+    right: 55%;
     position: absolute;
   }
   .home .body-div .flex-box .left-div input {

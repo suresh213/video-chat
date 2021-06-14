@@ -1,6 +1,6 @@
 .footer {
   height: 5vh;
-  z-index: -1;
+  // z-index: 1;
   //   background-color: black;
   display: flex;
   justify-content: center;
@@ -18,8 +18,10 @@
   img {
     height: 17px;
     width: 17px;
+    z-index: 1;
   }
   svg {
+    z-index: 1;
     margin-top: 0px;
     margin-left: 30px;
     padding: 0px;

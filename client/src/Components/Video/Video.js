@@ -7,6 +7,7 @@ import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
 import homeIcon1 from '../../assets/video-call.png';
 import { APP_NAME } from '../../constants';
+import Spinner from '../../common/Spinner';
 
 const Video = (props) => {
   const {
@@ -26,7 +27,7 @@ const Video = (props) => {
     showEditor,
     otherUserStream,
     otherUser,
-    otherUserName
+    otherUserName,
   } = useContext(SocketContext);
 
   const [mobileView, setMobileView] = useState(false);
@@ -39,7 +40,7 @@ const Video = (props) => {
     resize();
     window.addEventListener('resize', resize);
   }, []);
-// console.log(me,otherUser)
+  // console.log(me,otherUser)
   useEffect(() => {
     if (stream) {
       myVideo.current.srcObject = stream;
@@ -48,6 +49,7 @@ const Video = (props) => {
     navigator.mediaDevices
       .getUserMedia({ video: true, audio: true })
       .then((res) => {
+        res.getAudioTracks()[0].enabled = false;
         setStream(res);
         myVideo.current.srcObject = res;
       });
@@ -56,7 +58,6 @@ const Video = (props) => {
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
   }, [otherUserStream, userVideoStatus]);
-
 
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
@@ -71,9 +72,9 @@ const Video = (props) => {
           {' '}
           <div className='video-frames'>
             <div className='video-frame'>
-              {myMicStatus ? <MicIcon /> : <MicOffIcon />}
-              {stream && (
+              {stream ? (
                 <>
+                  {myMicStatus ? <MicIcon /> : <MicOffIcon />}
                   <video
                     width='250'
                     height='140'
@@ -81,23 +82,21 @@ const Video = (props) => {
                     ref={myVideo}
                     autoPlay
                     muted
-                    style={myVideoStatus ? { opacity: 1 } : { opacity: 0 }}
+                    // style={myVideoStatus ? { opacity: 1 } : { opacity: 0 }}
                   ></video>
+                  <div className='name'>You</div>
                   {/* <img
-                    src={homeIcon}
-                    style={
+                    src={homeIcon1}
+                    className={
                       myVideoStatus
-                        ? { display: 'none' }
-                        : {
-                            position: 'relative',
-                            bottom: '120px',
-                            right: '180px',
-                          }
+                        ? 'hide-img'
+                        : 'show-img'
                     }
                   /> */}
                 </>
+              ) : (
+                <Spinner />
               )}
-              <div className='name'>You</div>
             </div>
 
             {callAccepted && (
@@ -112,6 +111,14 @@ const Video = (props) => {
                   autoPlay
                   // muted
                 ></video>
+                {/* <img
+                  src={homeIcon1}
+                  className={
+                    userVideoStatus
+                      ? 'hide-img'
+                      : 'show-img'
+                  }
+                /> */}
                 {/* ) : (
                   <img src={homeIcon} />
                 )} */}
@@ -124,7 +131,7 @@ const Video = (props) => {
           <Options history={props.history} />
         </div>
       </div>
-      {!mobileView && showEditor&&(
+      {!mobileView && showEditor && (
         <div className='right'>
           <div className='editor-div'>
             <Editor />

@@ -6,8 +6,8 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  bottom: 0;
 }
 
 .options button {
@@ -36,6 +36,13 @@
 
 .options .red-btn:hover {
   background-color: #e44646;
+}
+
+@media (max-width: 576px) {
+  .options {
+    position: fixed;
+    bottom: 0;
+  }
 }
 
 .options-menu {

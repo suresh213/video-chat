@@ -31,12 +31,12 @@ const Messages = () => {
   }, []);
 
   const sendMessage = () => {
-    if (newMessage.length <= 0) {
+    if (newMessage.trim().length <= 0) {
       message.error('Enter some message');
       return;
     }
 
-    let tempMessage = { text: newMessage, user: me };
+    let tempMessage = { text: newMessage.trim(), user: me };
     socket.emit('send-message', {
       data: tempMessage,
       userToSend: otherUser,
@@ -81,7 +81,7 @@ const Messages = () => {
             type='text'
             value={newMessage}
             onChange={(e) => {
-              setNewMessage(e.target.value.trim());
+              setNewMessage(e.target.value);
             }}
             placeholder='Enter a message'
             required

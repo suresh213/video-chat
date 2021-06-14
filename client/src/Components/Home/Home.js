@@ -4,6 +4,7 @@ import './Home.css';
 import Footer from '../Footer/Footer';
 import homeIcon from '../../assets/video-call.png';
 import homeIcon1 from '../../assets/home.png';
+import noteIcon from '../../assets/note2.png';
 import homeVideo from '../../assets/homeVideo1.mp4';
 import ChatIcon from '@material-ui/icons/Chat';
 import EventNoteIcon from '@material-ui/icons/EventNote';
@@ -100,7 +101,7 @@ const Home = (props) => {
                 <button
                   className='home-btn'
                   onClick={() => {
-                    if (meetingCode.trim().length === 0) {
+                    if (!meetingCode || meetingCode.trim().length === 0) {
                       message.error('Please enter meeting code');
                       return;
                     }
@@ -129,7 +130,8 @@ const Home = (props) => {
                   <p>Real time Chat</p>
                 </div>
               </div>
-              <img src={homeIcon1} alt='' />
+              <img src={homeIcon1} alt='' className='chat-img' />
+              <img src={noteIcon} alt='' className='note-img' />
             </div>
           </div>
           <div className='right-div'>
