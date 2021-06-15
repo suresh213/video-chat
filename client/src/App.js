@@ -1,3 +1,4 @@
+import React, { useEffect } from 'react';
 import './App.css';
 import Video from './Components/Video/Video';
 import Join from './Components/Join/Join';
