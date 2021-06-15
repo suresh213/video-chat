@@ -1,6 +1,21 @@
 # Video Chat App
 A 1 on 1  video chat app with live editor for online interviews
 
+**Project Link** - ***https://i-meet.netlify.app/***
+
+## Features
+
+- 1:1 Video chat
+- Live Editor for interview
+- Notes (downloadable as PDF) 
+- Instantly join a call with a meeting link
+- Real time chat
+- Chat Notifications
+- Mute audio/video
+- Neat and clean UI
+
+## Screenshots 📸
+
 ### Home
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/1.png?raw=true)
 
