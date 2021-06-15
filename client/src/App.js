@@ -11,9 +11,9 @@ import {
 
 function App() {
 
-  // useEffect(() => {
-  //   if (!navigator.onLine) alert('Connect to internet!');
-  // }, [navigator]);
+  useEffect(() => {
+    if (!navigator.onLine) alert('Connect to internet!');
+  }, [navigator]);
 
   return (
     <ContextProvider>

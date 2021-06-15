@@ -41,6 +41,7 @@ const Home = (props) => {
   } = useContext(SocketContext);
 
   const setDatas = () => {
+    setMeetingCode(null);
     setCallAccepted(false);
     setCallEnded(false);
     setName('');
@@ -50,7 +51,6 @@ const Home = (props) => {
     setMessages([]);
     setNotes('');
     setNotesOpen(false);
-    setMeetingCode(null);
     setOtherUserStream(null);
     setNewMeet(false);
     setOtherUser(null);
@@ -70,10 +70,6 @@ const Home = (props) => {
       setMeetingCode(paramsCode.substring(1));
     }
   }, []);
-
-  useEffect(() => {
-    console.log(meetingCode);
-  }, [meetingCode]);
 
   return (
     <div className='home'>
