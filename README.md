@@ -1,7 +1,7 @@
 # Video Chat App
 A 1 on 1  video chat app with live editor for online interviews
 
-**Project Link** - ***https://i-meet.netlify.app/***
+**Project Link** - ***https://i-meet.netlify.app***
 
 ## Features
 
