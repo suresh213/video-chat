@@ -18,7 +18,6 @@ const Home = (props) => {
   const paramsCode = props.location.search;
 
   const {
-    stream,
     meetingCode,
     setMeetingCode,
     setNewMeet,
