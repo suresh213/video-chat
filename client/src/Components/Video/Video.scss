@@ -1,4 +1,5 @@
 @import '../../assets/styles/_mixins.scss';
+
 .flex-div {
   display: flex;
   height: 100vh;
@@ -45,11 +46,20 @@
             // top: 0%;
             left: 4%;
           }
-          video {
+          .video-ref {
             // margin-top: 1rem;
             width: 72%;
             height: 73%;
             // border: 2px solid rgb(232, 232, 232);
+          }
+          .img-bg{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            // background-color: rgb(235, 235, 235);
+            border-radius: 10px;
           }
           .name {
             font-size: 20px;
@@ -82,7 +92,7 @@
           // align-items: center;
           // justify-content: center;
 
-          margin: auto;
+          margin: auto ;
           .video-frame {
             position: relative;
             .hide-img {
@@ -98,12 +108,13 @@
               position: relative;
               left: 10%;
             }
-            // video {
+            .video-ref{
             // margin-top: 1rem;
             // width: 55%;
             // height: 23vh;
             // border: 2px solid rgb(232, 232, 232);
-            // }
+            }
+            
           }
         }
       }
@@ -166,6 +177,7 @@
         // height: 80%;
         
         .video-frame {
+          
           text-align: center;
           // border: 1px solid black;
           display: flex;
@@ -181,12 +193,22 @@
             width: 50px;
             height: 50px;
           }
-          video {
+          .video-ref {
             // margin-top: 1rem;
             width: 90%;
             height: 80%;
             // border: 2px solid rgb(232, 232, 232);
           }
+          .img-bg{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 5rem;
+            height: 5rem;
+            // background-color: rgb(235, 235, 235);
+            border-radius: 10px;
+          }
+          
         }
       }
     }
@@ -219,20 +241,30 @@
             // background-color: black;
             svg {
               position: relative;
-              left: 5%;
+              // left: 5%;
             }
             width: 70%;
-            img {
-              width: 50px;
-              height: 50px;
-              position: absolute;
-              left: 0%;
-            }
-            video {
+            // img {
+            //   width: 50px;
+            //   height: 50px;
+            //   position: absolute;
+            //   left: 0%;
+            // }
+            
+            .video-ref {
               // margin-top: 1rem;
               width: 100%;
               height: 100%;
               // border: 2px solid rgb(232, 232, 232);
+            }
+            .img-bg{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 5rem;
+              height: 5rem;
+              // background-color: rgb(235, 235, 235);
+              border-radius: 10px;
             }
           }
         }

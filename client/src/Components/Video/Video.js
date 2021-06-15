@@ -70,6 +70,10 @@ const Video = (props) => {
   }, [loading]);
 
   useEffect(() => {
+    if (myVideo.current) myVideo.current.srcObject = stream;
+  }, [myVideoStatus]);
+
+  useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
   }, [otherUserStream, userVideoStatus, loading]);
 
@@ -99,24 +103,24 @@ const Video = (props) => {
               {stream ? (
                 <>
                   {myMicStatus ? <MicIcon /> : <MicOffIcon />}
-                  <video
-                    width='250'
-                    height='140'
-                    src=''
-                    ref={myVideo}
-                    autoPlay
-                    muted
-                    // style={myVideoStatus ? { opacity: 1 } : { opacity: 0 }}
-                  ></video>
+                  {myVideoStatus ? (
+                    <video
+                      width='250'
+                      height='140'
+                      className='video-ref'
+                      src=''
+                      ref={myVideo}
+                      autoPlay
+                      muted
+                    ></video>
+                  ) : (
+                    <div className='video-ref img-bg'>
+                      <img
+                        src={homeIcon1}
+                      />
+                    </div>
+                  )}
                   <div className='name'>You</div>
-                  {/* <img
-                    src={homeIcon1}
-                    className={
-                      myVideoStatus
-                        ? 'hide-img'
-                        : 'show-img'
-                    }
-                  /> */}
                 </>
               ) : (
                 <Spinner />
@@ -126,26 +130,23 @@ const Video = (props) => {
             {callAccepted && (
               <div className='video-frame'>
                 {userMicStatus ? <MicIcon /> : <MicOffIcon />}
-                {/* {userVideoStatus ? ( */}
-                <video
-                  width='250'
-                  height='140'
-                  src=''
-                  ref={userVideo}
-                  autoPlay
-                  // muted
-                ></video>
-                {/* <img
-                  src={homeIcon1}
-                  className={
-                    userVideoStatus
-                      ? 'hide-img'
-                      : 'show-img'
-                  }
-                /> */}
-                {/* ) : (
-                  <img src={homeIcon} />
-                )} */}
+                {userVideoStatus ? (
+                  <video
+                    width='250'
+                    height='140'
+                    src=''
+                    className='video-ref'
+                    ref={userVideo}
+                    autoPlay
+                    // muted
+                  ></video>
+                ) : (
+                  <div className='video-ref img-bg'>
+                    <img
+                      src={homeIcon1}
+                    />
+                  </div>
+                )}
                 <div className='name'>{otherUserName}</div>
               </div>
             )}
