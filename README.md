@@ -11,6 +11,7 @@ A 1 on 1  video chat app with live editor for online interviews
 - Instantly join a call with a meeting link
 - Real time chat
 - Chat Notifications
+- Instant notifications of ongoing meeting
 - Mute audio/video
 - Neat and clean UI
 
