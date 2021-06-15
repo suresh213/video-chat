@@ -6,8 +6,10 @@ import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
 import homeIcon1 from '../../assets/video-call.png';
+import noteIcon from '../../assets/note2.png';
 import { APP_NAME } from '../../constants';
 import Spinner from '../../common/Spinner';
+import Navbar from '../Navbar/Navbar';
 
 const Video = (props) => {
   const {
@@ -52,7 +54,7 @@ const Video = (props) => {
   }, [loading]);
 
   useEffect(() => {
-    if(loading) return
+    if (loading) return;
     if (stream) {
       myVideo.current.srcObject = stream;
       return;
@@ -68,20 +70,25 @@ const Video = (props) => {
 
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
-  }, [otherUserStream, userVideoStatus]);
+  }, [otherUserStream, userVideoStatus,loading]);
 
   if (loading) {
-    return <Spinner starting/>;
+    return (
+      <div
+        style={{
+          height: '100vh',
+          overflow: 'hidden',
+          backgroundColor: 'white',
+        }}
+      >
+        <Spinner starting />
+      </div>
+    );
   }
   return (
     <div className={showEditor ? 'flex-div' : 'flex-div hide-editor'}>
       <div className='left'>
-        <div className='navbar'>
-          <div className='title-div'>
-            <img src={homeIcon1} alt='' />
-            <h3>{APP_NAME}</h3>
-          </div>
-        </div>
+        <Navbar />
         <div className='video-div'>
           {' '}
           <div className='video-frames'>
@@ -148,6 +155,10 @@ const Video = (props) => {
       {!mobileView && showEditor && (
         <div className='right'>
           <div className='editor-div'>
+            <div className='head'>
+              <img src={noteIcon} alt="" />
+              <h3>Whiteboard</h3>
+            </div>
             <Editor />
           </div>
         </div>

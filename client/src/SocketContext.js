@@ -1,12 +1,10 @@
 import { useEffect, createContext, useState, useRef } from 'react';
 import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
-import { v4 } from 'uuid';
 import { message } from 'antd';
 const SocketContext = createContext();
 
-
-const BACKEND_URL='https://video-chat-meet-backend.herokuapp.com'
+const BACKEND_URL = 'https://video-chat-meet-backend.herokuapp.com';
 // const BACKEND_URL='http://localhost:5000'
 const socket = io(BACKEND_URL);
 
@@ -21,7 +19,6 @@ const ContextProvider = ({ children }) => {
   const [name, setName] = useState('');
   const [otherUser, setOtherUser] = useState(null);
   const [otherUserName, setOtherUserName] = useState('');
-  const [documentId, setDocumentId] = useState(v4());
   const [myVideoStatus, setMyVideoStatus] = useState(true);
   const [userVideoStatus, setUserVideoStatus] = useState(true);
   const [myMicStatus, setMyMicStatus] = useState(false);
@@ -46,15 +43,14 @@ const ContextProvider = ({ children }) => {
     socket.on('me', (id) => {
       setMe(id);
     });
-    socket.on('calluser', ({ from, name: callerName, signal, documentId }) => {
+    socket.on('calluser', ({ from, name: callerName, signal }) => {
       setCall({
         from,
         callerName,
         signal,
         isRecievedCall: true,
-        documentId,
       });
-      setOtherUserName(callerName)
+      setOtherUserName(callerName);
     });
 
     socket.on('updateUserMedia', ({ type, mediaStatus }) => {
@@ -86,7 +82,6 @@ const ContextProvider = ({ children }) => {
   const answerCall = () => {
     setCallAccepted(true);
     setOtherUser(call.from);
-    setDocumentId(call.documentId);
     const peer = new Peer({ initiator: false, trickle: false, stream });
 
     peer.on('signal', (data) => {
@@ -94,7 +89,6 @@ const ContextProvider = ({ children }) => {
         name,
         signal: data,
         to: call.from,
-        documentId: call.documentId,
         type: 'both',
         mediaStatus: [myMicStatus, myVideoStatus],
       });
@@ -122,14 +116,13 @@ const ContextProvider = ({ children }) => {
         from: me,
         signal: data,
         name,
-        documentId,
       });
     });
     peer.on('stream', (currentStream) => {
       setOtherUserStream(currentStream);
     });
 
-    socket.on('callaccepted', (signal,userName) => {
+    socket.on('callaccepted', (signal, userName) => {
       socket.emit('updateMyMedia', {
         data: {
           type: 'both',
@@ -137,7 +130,7 @@ const ContextProvider = ({ children }) => {
         },
         userToUpdate: id,
       });
-      setOtherUserName(userName)
+      setOtherUserName(userName);
       setCallAccepted(true);
       peer.signal(signal);
       message.info(`${name} joined with you`);
@@ -153,7 +146,7 @@ const ContextProvider = ({ children }) => {
     if (connectionRef.current) connectionRef.current.destroy();
     history.push('/');
     message.success('Meet Ended');
-    // window.location.reload();
+    window.location.reload();
   };
 
   const updateVideoStatus = () => {
@@ -195,7 +188,6 @@ const ContextProvider = ({ children }) => {
         callUser,
         endCall,
         otherUser,
-        documentId,
         myVideoStatus,
         myMicStatus,
         userVideoStatus,
@@ -224,7 +216,8 @@ const ContextProvider = ({ children }) => {
         setMyMicStatus,
         setUserMicStatus,
         setMyVideoStatus,
-        otherUserName, setOtherUserName
+        otherUserName,
+        setOtherUserName,
       }}
     >
       {children}

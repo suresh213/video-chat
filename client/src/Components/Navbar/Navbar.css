@@ -1,0 +1,63 @@
+.navbar {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  height: 8vh;
+  padding: 0 20px;
+}
+
+.navbar .title-div {
+  align-items: center;
+  width: 40%;
+  display: flex;
+  justify-content: flex-start;
+  grid-column-gap: 10px;
+}
+
+.navbar .title-div img {
+  height: 70%;
+}
+
+.navbar .title-div h3 {
+  font-size: 22px;
+  font-weight: 400;
+  margin: auto 0;
+  color: white;
+}
+
+.navbar .repo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-column-gap: 5px;
+  width: auto;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.navbar .repo svg {
+  fill: #f2d600;
+  font-size: 30px;
+}
+
+.navbar .repo .repo-text {
+  text-align: left;
+  display: block;
+}
+
+.navbar .repo .repo-text .repo-name {
+  font-size: 11px;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar .repo .repo-text .github-name {
+  font-size: 15px;
+  color: white;
+  padding: 0;
+  margin: 0;
+}

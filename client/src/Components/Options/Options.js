@@ -18,50 +18,18 @@ import ChatIcon from '@material-ui/icons/Chat';
 import Messages from '../Messages/Messages';
 import Notes from '../Notes/Notes';
 import CloseIcon from '@material-ui/icons/Close';
-import { withStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
+import AntSwitch from '../../common/AntSwitch';
 
-const AntSwitch = withStyles((theme) => ({
-  root: {
-    width: 30,
-    height: 18,
-    padding: 0,
-    display: 'flex',
-  },
-  switchBase: {
-    padding: 2,
-    color: theme.palette.grey[500],
-    '&$checked': {
-      transform: 'translateX(12px)',
-      color: theme.palette.common.white,
-      '& + $track': {
-        opacity: 1,
-        backgroundColor: theme.palette.primary.main,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  },
-  thumb: {
-    width: 14,
-    height: 14,
-    boxShadow: 'none',
-  },
-  track: {
-    border: `1px solid ${theme.palette.grey[500]}`,
-    borderRadius: 18 / 2,
-    opacity: 1,
-    backgroundColor: theme.palette.common.white,
-  },
-  checked: {},
-}))(Switch);
 const Options = (props) => {
   const [callId, setCallId] = useState('');
+
   const {
     me,
     call,
     callAccepted,
     callEnded,
     name,
+    setCall,
     setName,
     myVideo,
     userVideo,
@@ -201,10 +169,20 @@ const Options = (props) => {
                   display: 'flex',
                   justifyContent: 'space-around',
                   alignItems: 'center',
+                  margin: 'auto',
                 }}
               >
-                <h3>Interview mode</h3>
+                <h3
+                  style={{
+                    margin: 'auto 0',
+                  }}
+                >
+                  Interview mode
+                </h3>
                 <AntSwitch
+                  style={{
+                    margin: 'auto 0',
+                  }}
                   checked={showEditor}
                   onChange={() => {
                     message.info(
@@ -251,7 +229,13 @@ const Options = (props) => {
                   >
                     Accept
                   </Button>
-                  <Button type='primary' onClick={() => setOpen(false)}>
+                  <Button
+                    type='primary'
+                    onClick={() => {
+                      setCall(null);
+                      setOpen(false);
+                    }}
+                  >
                     Deny
                   </Button>
                 </div>

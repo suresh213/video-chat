@@ -2,10 +2,12 @@
 .flex-div {
   display: flex;
   height: 100vh;
+  background-color: white;
   .left {
     height: 9vh;
     width: 30%;
     // background-color: grey;
+    // background-color: white;
     // animation: 1s slide-right;
     // @keyframes slide-right {
     //   from {
@@ -15,33 +17,6 @@
     //     margin-left: 0%;
     //   }
     // }
-    .nav-bar {
-      // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-      background-color: black !important;
-      display: flex;
-      justify-content: space-between;
-      height: 8vh;
-      .title-div {
-        align-items: center;
-        padding: 0 20px;
-        width: 90%;
-        background-color: blanchedalmond;
-        display: flex;
-        justify-content: flex-start;
-        grid-column-gap: 10px;
-        img {
-          // width: 70%;
-          height: 70%;
-        }
-        h3 {
-          font-size: 22px;
-          font-weight: 400;
-          // margin-left: 10px;
-          margin: auto 0;
-          color: white;
-        }
-      }
-    }
 
     .video-div {
       // display: block;
@@ -92,7 +67,7 @@
     }
     @include mobile {
       width: 30%;
-      background-color: rgb(232, 232, 232);
+      // background-color: rgb(232, 232, 232);
       .video-div {
         // display: block;
         // align-items: center;
@@ -136,11 +111,27 @@
   }
   .right {
     width: 70%;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(243, 243, 243);
     border-left: 1px solid rgb(213, 213, 213);
     overflow: hidden;
+
     .editor-div {
       overflow: hidden;
+      .head {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        padding: 10px 20px;
+        grid-column-gap: 5px;
+        img{
+          width: 30px;
+        }
+        h3 {
+          margin: auto 0;
+          // font-weight: 400;
+          font-size: 20px;
+        }
+      }
     }
   }
 }
@@ -148,7 +139,7 @@
   display: block;
   .left {
     width: 100%;
-    background-color: rgb(232, 232, 232);
+    // background-color: rgb(232, 232, 232);
     height: 100%;
     // animation: 0.5s slide-right;
     // @keyframes slide-right {
@@ -198,7 +189,7 @@
     @include mobile {
       width: 100%;
       // background-color: grey;
-      background-color: rgb(232, 232, 232);
+      // background-color: rgb(232, 232, 232);
       height: 100%;
       .video-div {
         // height: 100%;

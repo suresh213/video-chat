@@ -1,39 +1,12 @@
 .flex-div {
   display: flex;
   height: 100vh;
+  background-color: white;
 }
 
 .flex-div .left {
   height: 9vh;
   width: 30%;
-}
-
-.flex-div .left .nav-bar {
-  background-color: black !important;
-  display: flex;
-  justify-content: space-between;
-  height: 8vh;
-}
-
-.flex-div .left .nav-bar .title-div {
-  align-items: center;
-  padding: 0 20px;
-  width: 90%;
-  background-color: blanchedalmond;
-  display: flex;
-  justify-content: flex-start;
-  grid-column-gap: 10px;
-}
-
-.flex-div .left .nav-bar .title-div img {
-  height: 70%;
-}
-
-.flex-div .left .nav-bar .title-div h3 {
-  font-size: 22px;
-  font-weight: 400;
-  margin: auto 0;
-  color: white;
 }
 
 .flex-div .left .video-div {
@@ -85,7 +58,6 @@
 @media (max-width: 576px) {
   .flex-div .left {
     width: 30%;
-    background-color: #e8e8e8;
   }
   .flex-div .left .video-div {
     grid-row-gap: 1rem;
@@ -115,7 +87,7 @@
 
 .flex-div .right {
   width: 70%;
-  background-color: #ebebeb;
+  background-color: #f3f3f3;
   border-left: 1px solid #d5d5d5;
   overflow: hidden;
 }
@@ -124,13 +96,29 @@
   overflow: hidden;
 }
 
+.flex-div .right .editor-div .head {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 10px 20px;
+  grid-column-gap: 5px;
+}
+
+.flex-div .right .editor-div .head img {
+  width: 30px;
+}
+
+.flex-div .right .editor-div .head h3 {
+  margin: auto 0;
+  font-size: 20px;
+}
+
 .hide-editor {
   display: block;
 }
 
 .hide-editor .left {
   width: 100%;
-  background-color: #e8e8e8;
   height: 100%;
 }
 
@@ -168,7 +156,6 @@
 @media (max-width: 576px) {
   .hide-editor .left {
     width: 100%;
-    background-color: #e8e8e8;
     height: 100%;
   }
   .hide-editor .left .video-div {

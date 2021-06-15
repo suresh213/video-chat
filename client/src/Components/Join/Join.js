@@ -3,8 +3,8 @@ import { SocketContext } from '../../SocketContext';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';
 import { message } from 'antd';
-import { APP_NAME } from '../../constants';
 import Spinner from '../../common/Spinner';
+import Navbar from '../Navbar/Navbar';
 
 const Join = (props) => {
   const {
@@ -42,12 +42,7 @@ const Join = (props) => {
 
   return (
     <>
-      <div className='navbar'>
-        <div className='title-div'>
-          <img src={homeIcon} alt='' />
-          <h3>{APP_NAME}</h3>
-        </div>
-      </div>
+      <Navbar />
       <div className='join-page'>
         <div>
           <div className='video-div'>
@@ -71,7 +66,7 @@ const Join = (props) => {
                 placeholder='Enter your name'
                 value={name}
                 onChange={(e) => {
-                  setName(e.target.value.trim());
+                  setName(e.target.value);
                 }}
               />
               <div className='join-btns-div'>
@@ -79,17 +74,27 @@ const Join = (props) => {
                   <button
                     className='btn'
                     onClick={() => {
-                      if (name.length === 0) {
+                      if (name.trim().length === 0) {
                         message.error('Please enter your name');
                         return;
                       }
                       props.history.push('meet');
                     }}
                   >
-                    Start new meeting
+                    Start
                   </button>
                 ) : (
-                  <button className='btn' onClick={() => callUser(meetingCode)}>
+                  <button
+                    className='btn'
+                    onClick={() => {
+                      if (name.trim().length === 0) {
+                        message.error('Please enter your name');
+                        return;
+                      }
+
+                      callUser(meetingCode);
+                    }}
+                  >
                     Join now
                   </button>
                 )}

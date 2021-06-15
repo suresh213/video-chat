@@ -13,6 +13,7 @@ import DuoIcon from '@material-ui/icons/Duo';
 import { Link } from 'react-router-dom';
 import { message } from 'antd';
 import { APP_NAME } from '../../constants';
+import Navbar from '../Navbar/Navbar'
 
 const Home = (props) => {
   const {
@@ -68,12 +69,7 @@ const Home = (props) => {
 
   return (
     <div className='home'>
-      <div className='navbar'>
-        <div className='title-div'>
-          <img src={homeIcon} alt='' />
-          <h3>{APP_NAME}</h3>
-        </div>
-      </div>
+      <Navbar/>
       <div className='body-div'>
         <div className='flex-box'>
           <div className='left-div'>
@@ -102,7 +98,7 @@ const Home = (props) => {
                   className='home-btn'
                   onClick={() => {
                     if (!meetingCode || meetingCode.trim().length === 0) {
-                      message.error('Please enter meeting code');
+                      message.error('Please enter the meeting code');
                       return;
                     }
                     props.history.push('join');

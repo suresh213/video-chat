@@ -1,34 +1,9 @@
 @import '../../assets/styles/_mixins.scss';
 .home {
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: white;
-  .navbar {
-    // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    background-color: black;
-    display: flex;
-    justify-content: space-between;
-    height: 8vh;
-    .title-div {
-      align-items: center;
-      padding: 0 20px;
-      width: 90%;
-      display: flex;
-      justify-content: flex-start;
-      grid-column-gap: 10px;
-      img {
-        // width: 70%;
-        height: 70%;
-      }
-      h3 {
-        font-size: 22px;
-        font-weight: 400;
-        // margin-left: 10px;
-        margin: auto 0;
-        color: white;
-      }
-    }
-  }
+  
   .body-div {
     // position: relative;
     overflow: hidden;

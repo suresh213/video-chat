@@ -1,34 +1,7 @@
 .home {
   position: relative;
-  overflow-y: hidden;
+  overflow: hidden;
   background-color: white;
-}
-
-.home .navbar {
-  background-color: black;
-  display: flex;
-  justify-content: space-between;
-  height: 8vh;
-}
-
-.home .navbar .title-div {
-  align-items: center;
-  padding: 0 20px;
-  width: 90%;
-  display: flex;
-  justify-content: flex-start;
-  grid-column-gap: 10px;
-}
-
-.home .navbar .title-div img {
-  height: 70%;
-}
-
-.home .navbar .title-div h3 {
-  font-size: 22px;
-  font-weight: 400;
-  margin: auto 0;
-  color: white;
 }
 
 .home .body-div {
