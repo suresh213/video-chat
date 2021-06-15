@@ -19,6 +19,7 @@ import Messages from '../Messages/Messages';
 import Notes from '../Notes/Notes';
 import CloseIcon from '@material-ui/icons/Close';
 import AntSwitch from '../../common/AntSwitch';
+import { APP_URL } from '../../constants';
 
 const Options = (props) => {
   const [callId, setCallId] = useState('');
@@ -149,17 +150,26 @@ const Options = (props) => {
               <input
                 type='text'
                 readOnly
-                value={me}
+                value={`${APP_URL}?${me}`}
                 style={{ marginBottom: '1rem' }}
               />
               <br />
+              <CopyToClipboard
+                text={`${APP_URL}?${me}`}
+                onCopy={() => {
+                  message.success('Url Copied');
+                }}
+              >
+                <Button type='primary'>Copy Link</Button>
+              </CopyToClipboard>
+              <h3 style={{ padding: '10px 0' }}>Or</h3>
               <CopyToClipboard
                 text={me}
                 onCopy={() => {
                   message.success('Id Copied');
                 }}
               >
-                <Button type='primary'>Copy ID to Clipboard</Button>
+                <Button type='primary'>Copy ID</Button>
               </CopyToClipboard>
             </div>
 

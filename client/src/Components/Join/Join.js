@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef,useParams } from 'react';
 import { SocketContext } from '../../SocketContext';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';

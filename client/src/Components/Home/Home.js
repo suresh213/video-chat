@@ -10,12 +10,13 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { message } from 'antd';
-import { APP_NAME } from '../../constants';
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Navbar/Navbar';
 
 const Home = (props) => {
+  const paramsCode = props.location.search;
+
   const {
     stream,
     setStream,
@@ -65,11 +66,18 @@ const Home = (props) => {
       stream.getTracks().forEach((track) => track.stop());
     }
     setDatas();
+    if (paramsCode.length) {
+      setMeetingCode(paramsCode.substring(1));
+    }
   }, []);
+
+  useEffect(() => {
+    console.log(meetingCode);
+  }, [meetingCode]);
 
   return (
     <div className='home'>
-      <Navbar/>
+      <Navbar />
       <div className='body-div'>
         <div className='flex-box'>
           <div className='left-div'>
