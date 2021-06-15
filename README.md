@@ -6,7 +6,7 @@ A 1 on 1  video chat app with live editor for online interviews
 ## Features
 
 - 1:1 Video chat
-- Live Editor for interview
+- Live Editor(Whiteboard) for interviews
 - Notes (downloadable as PDF) 
 - Instantly join a call with a meeting link
 - Real time chat
