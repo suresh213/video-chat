@@ -49,6 +49,12 @@ const Messages = () => {
     setShowChatBox(!showChatBox);
   };
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      sendMessage();
+    }
+  };
+
   return (
     <Dialog
       open={showChatBox}
@@ -83,11 +89,13 @@ const Messages = () => {
             onChange={(e) => {
               setNewMessage(e.target.value);
             }}
+            
             placeholder='Enter a message'
             required
           />
           <Button
             type='primary'
+            onKeyPress={handleKeypress}
             onClick={() => {
               sendMessage();
             }}

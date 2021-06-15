@@ -4,6 +4,7 @@ import './Messages.css';
 
 const Message = (props) => {
   const { me } = useContext(SocketContext);
+  
   return (
     <div
       className={props.message.user == me ? 'message-div tr' : 'message-div tl'}
