@@ -33,4 +33,4 @@ A 1 on 1  video chat app with live editor for online interviews
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/5.png?raw=true)
 
 
-## FEEL FREE TO GIVE REPO A STAR
+#### If you like this project, FEEL FREE TO GIVE REPO A 🌟:
