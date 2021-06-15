@@ -10,7 +10,7 @@
   justify-content: space-around;
   position: fixed;
   bottom: 0;
-
+  outline: none;
   button {
     display: flex;
     align-items: center;
@@ -50,6 +50,7 @@
   padding: 0 1rem;
   display: block;
   text-align: center;
+  outline: none;
   div {
     padding: 0.5rem;
   }

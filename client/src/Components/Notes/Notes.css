@@ -17,6 +17,7 @@
   width: 15%;
   display: flex;
   justify-content: space-between;
+  padding-right: 10px;
 }
 
 .notes .btn-div .flex-btns-div button {

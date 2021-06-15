@@ -7,6 +7,7 @@ import MicOffIcon from '@material-ui/icons/MicOff';
 import './Video.css';
 import homeIcon1 from '../../assets/video-call.png';
 import noteIcon from '../../assets/note2.png';
+
 import { APP_NAME } from '../../constants';
 import Spinner from '../../common/Spinner';
 import Navbar from '../Navbar/Navbar';
@@ -70,7 +71,7 @@ const Video = (props) => {
 
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
-  }, [otherUserStream, userVideoStatus,loading]);
+  }, [otherUserStream, userVideoStatus, loading]);
 
   if (loading) {
     return (
@@ -91,7 +92,9 @@ const Video = (props) => {
         <Navbar />
         <div className='video-div'>
           {' '}
-          <div className='video-frames'>
+          <div
+            className={callAccepted ? 'video-frames ' : 'video-frames v-size'}
+          >
             <div className='video-frame'>
               {stream ? (
                 <>
@@ -156,7 +159,7 @@ const Video = (props) => {
         <div className='right'>
           <div className='editor-div'>
             <div className='head'>
-              <img src={noteIcon} alt="" />
+              <img src={noteIcon} alt='' />
               <h3>Whiteboard</h3>
             </div>
             <Editor />

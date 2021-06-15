@@ -122,6 +122,10 @@
   height: 100%;
 }
 
+.hide-editor .left .video-div .v-size {
+  width: 75%;
+}
+
 .hide-editor .left .video-div .video-frames {
   display: flex;
   align-items: center;

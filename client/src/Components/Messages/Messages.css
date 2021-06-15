@@ -27,7 +27,7 @@
 
 .messages {
   overflow-y: scroll;
-  padding: 10px;
+  padding: 0 10px;
   width: 100%;
   height: 100%;
   flex: auto;
@@ -40,19 +40,24 @@
 
 .message-div {
   display: flex;
-  margin-bottom: 10px;
+  margin-top: 10px;
   word-wrap: break-word;
 }
 
 .message {
   display: flex;
   max-width: 60%;
-  background-color: #0e90b8;
-  color: white;
-  padding: 5px 10px;
+  padding: 3px 10px;
   border-radius: 10px;
   word-wrap: break-word;
   overflow-x: hidden;
+  border: 1.5px solid #888888;
+  font-weight: 500;
+}
+
+.bg-dark {
+  color: white;
+  background-color: #33b0dd;
 }
 
 .tr {

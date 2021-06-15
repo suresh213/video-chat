@@ -27,7 +27,7 @@
   // display: flex;
   // align-items: center;
   // justify-content: center;
-  padding: 10px;
+  padding: 0 10px;
   width: 100%;
   height: 100%;
   h3 {
@@ -38,18 +38,24 @@
 }
 .message-div {
   display: flex;
-  margin-bottom: 10px;
+  margin-top: 10px;
   word-wrap: break-word;
 }
 .message {
   display: flex;
   max-width: 60%;
-  background-color: rgb(14, 144, 184);
-  color: white;
-  padding: 5px 10px;
+  // background-color: rgb(14, 144, 184);
+  // color: white;
+  padding: 3px 10px;
   border-radius: 10px;
   word-wrap: break-word;
   overflow-x: hidden;
+  border: 1.5px solid rgb(136, 136, 136);
+  font-weight: 500;
+}
+.bg-dark {
+  color: white;
+  background-color: rgb(51, 176, 221);
 }
 .tr {
   // text-align: right;
@@ -57,6 +63,7 @@
 }
 .tl {
   // text-align: left;
+
   justify-content: flex-start;
 }
 .inputs {

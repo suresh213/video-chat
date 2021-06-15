@@ -65,9 +65,6 @@
 }
 
 @media (max-width: 576px) {
-  .join-page {
-    margin-top: 20%;
-  }
   .join-page .video-div video {
     width: 70%;
     height: 50%;

@@ -162,7 +162,7 @@ const Options = (props) => {
               >
                 <Button type='primary'>Copy Link</Button>
               </CopyToClipboard>
-              <h3 style={{ padding: '10px 0' }}>Or</h3>
+              <h3 style={{ padding: '10px 0 0px 0' }}>Or</h3>
               <CopyToClipboard
                 text={me}
                 onCopy={() => {

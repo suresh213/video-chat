@@ -8,6 +8,7 @@
   justify-content: space-around;
   position: fixed;
   bottom: 0;
+  outline: none;
 }
 
 .options button {
@@ -49,6 +50,7 @@
   padding: 0 1rem;
   display: block;
   text-align: center;
+  outline: none;
 }
 
 .options-menu div {

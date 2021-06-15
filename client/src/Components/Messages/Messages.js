@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react';
-import { Button, message } from 'antd';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { Button, message, notification } from 'antd';
 import { SocketContext } from '../../SocketContext';
 import Message from './Message';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import { UserOutlined, MessageOutlined } from '@ant-design/icons';
 import CloseIcon from '@material-ui/icons/Close';
 import './Messages.css';
 
@@ -17,16 +18,24 @@ const Messages = () => {
     setShowChatBox,
     messages,
     setMessages,
+    otherUserName,
   } = useContext(SocketContext);
 
   const [newMessage, setNewMessage] = useState('');
+  const msgRef = useRef();
 
   useEffect(() => {
-    console.log(messages);
-  }, []);
+    if (msgRef.current) msgRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, showChatBox]);
+
   useEffect(() => {
     socket.on('recieve-message', (data) => {
       setMessages((messages) => [...messages, data]);
+        notification.open({
+          message: `New Message from ${otherUserName}`,
+          description: data.text,
+          icon: <MessageOutlined style={{ color: '#108ee9' }} />,
+        });
     });
   }, []);
 
@@ -50,7 +59,7 @@ const Messages = () => {
   };
 
   const handleKeypress = (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
       sendMessage();
     }
   };
@@ -79,6 +88,7 @@ const Messages = () => {
             ) : (
               <h3>No messages</h3>
             )}
+            <div ref={msgRef}></div>
           </div>
         </div>
         <div className='inputs'>
@@ -89,13 +99,11 @@ const Messages = () => {
             onChange={(e) => {
               setNewMessage(e.target.value);
             }}
-            
+            onKeyPress={handleKeypress}
             placeholder='Enter a message'
-            required
           />
           <Button
             type='primary'
-            onKeyPress={handleKeypress}
             onClick={() => {
               sendMessage();
             }}

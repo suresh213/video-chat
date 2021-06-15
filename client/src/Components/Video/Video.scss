@@ -152,6 +152,9 @@
     // }
     .video-div {
       // height: 100%;
+      .v-size {
+        width: 75%;
+      }
       .video-frames {
         display: flex;
         align-items: center;
@@ -161,6 +164,7 @@
 
         width: 65%;
         // height: 80%;
+        
         .video-frame {
           text-align: center;
           // border: 1px solid black;

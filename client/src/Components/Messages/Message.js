@@ -9,7 +9,7 @@ const Message = (props) => {
     <div
       className={props.message.user == me ? 'message-div tr' : 'message-div tl'}
     >
-      <div className='message'> {props.message.text}</div>
+      <div className={props.message.user == me ? 'message' : 'message bg-dark'}> {props.message.text}</div>
     </div>
   );
 };
