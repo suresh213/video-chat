@@ -10,7 +10,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import SurroundSoundIcon from '@material-ui/icons/SurroundSound';
 import DuoIcon from '@material-ui/icons/Duo';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { message } from 'antd';
 import Navbar from '../Navbar/Navbar';
 
@@ -19,53 +19,13 @@ const Home = (props) => {
 
   const {
     stream,
-    setStream,
     meetingCode,
     setMeetingCode,
-    setCallEnded,
-    setCallAccepted,
-    setName,
-    setShowEditor,
-    setShowChatBox,
-    setMessages,
-    setNotes,
-    setNotesOpen,
-    setOtherUserStream,
     setNewMeet,
-    setOtherUser,
-    setMyVideoStatus,
-    setMyMicStatus,
-    setUserMicStatus,
-    setUserVideoStatus,
-    setOtherUserName,
   } = useContext(SocketContext);
 
-  const setDatas = () => {
-    setMeetingCode(null);
-    setCallAccepted(false);
-    setCallEnded(false);
-    setName('');
-    setStream(null);
-    setShowEditor(false);
-    setShowChatBox(false);
-    setMessages([]);
-    setNotes('');
-    setNotesOpen(false);
-    setOtherUserStream(null);
-    setNewMeet(false);
-    setOtherUser(null);
-    setMyVideoStatus(true);
-    setMyMicStatus(false);
-    setUserMicStatus(false);
-    setUserVideoStatus(false);
-    setOtherUserName('');
-  };
 
   useEffect(() => {
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-    }
-    setDatas();
     if (paramsCode.length) {
       setMeetingCode(paramsCode.substring(1));
     }

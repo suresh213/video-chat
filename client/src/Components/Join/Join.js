@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef,useParams } from 'react';
+import React, { useContext, useEffect, useRef, useParams } from 'react';
 import { SocketContext } from '../../SocketContext';
 import './Join.css';
 import homeIcon from '../../assets/video-call.png';
@@ -24,6 +24,7 @@ const Join = (props) => {
   useEffect(() => {
     if (!newMeet && meetingCode.length === 0) {
       props.history.push('/');
+      window.location.reload();
       return;
     }
     // if (stream) return;
@@ -103,6 +104,7 @@ const Join = (props) => {
                   onClick={() => {
                     setMeetingCode('');
                     props.history.push('/');
+                    window.location.reload();
                   }}
                 >
                   Cancel
