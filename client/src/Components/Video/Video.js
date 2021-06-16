@@ -120,7 +120,7 @@ const Video = (props) => {
                       />
                     </div>
                   )}
-                  <div className='name'>You</div>
+                  <div className='name'>{name} (you)</div>
                 </>
               ) : (
                 <Spinner />
