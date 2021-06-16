@@ -1,20 +1,22 @@
 .options {
   background-color: black;
-  width: 30%;
   height: 10vh;
-  margin: auto;
+  margin: 0 auto;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  position: fixed;
-  bottom: 0;
   outline: none;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .options button {
   display: flex;
   align-items: center;
-  border-radius: 10%;
+  border-radius: 50%;
   outline: none;
   border: none;
   padding: 10px;
@@ -28,6 +30,8 @@
 }
 
 .options .red-btn {
+  border-radius: 35%;
+  padding: 7px 15px;
   background-color: #c20505;
 }
 
@@ -80,7 +84,18 @@
 }
 
 .w100 {
-  width: 100%;
+  border-radius: 25px;
+  width: 45%;
+}
+
+@media (max-width: 576px) {
+  .w100 {
+    width: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 }
 
 .call-div p {

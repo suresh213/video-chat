@@ -1,20 +1,25 @@
 @import '../../assets/styles/_mixins.scss';
 .options {
   background-color: rgb(0, 0, 0);
-  width: 30%;
+  // width: 30%;
   height: 10vh;
-  margin: auto;
+  margin: 0 auto;
   //   border-radius: 10px;
+  padding: 0 10px;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  position: fixed;
-  bottom: 0;
+  // position: fixed;
+  // bottom: 0;
   outline: none;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   button {
     display: flex;
     align-items: center;
-    border-radius: 10%;
+    border-radius: 50%;
     outline: none;
     border: none;
     padding: 10px;
@@ -33,6 +38,8 @@
     background-color: rgb(143, 143, 143);
   }
   .red-btn {
+    border-radius: 35%;
+    padding: 7px 15px;
     background-color: rgb(194, 5, 5);
     svg {
       fill: white;
@@ -75,7 +82,16 @@
   }
 }
 .w100 {
-  width: 100%;
+  border-radius: 25px;
+
+  width: 45%;
+  @include mobile {
+    width: 100%;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
 }
 
 .call-div {
