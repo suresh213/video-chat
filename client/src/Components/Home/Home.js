@@ -24,6 +24,7 @@ const Home = (props) => {
       if (paramsCode.substring(0, 5) == '?ref=') return; // for product hunt ref
       setMeetingCode(paramsCode.substring(1));
     }
+    setNewMeet(null);
   }, []);
 
   return (
