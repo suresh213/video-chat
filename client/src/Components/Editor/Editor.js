@@ -5,6 +5,8 @@ import './Editor.css';
 import saveAs from 'file-saver';
 import { pdfExporter } from 'quill-to-pdf';
 import { SocketContext } from '../../SocketContext';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
 
 var toolbarOptions = [
   ['bold', 'italic', 'underline', 'strike'],
@@ -22,13 +24,12 @@ var toolbarOptions = [
   ['clean'],
 ];
 
+hljs.configure({
+  languages: ['c++', 'java', 'javascript', 'ruby', 'python', 'swift', 'golang','html'],
+});
+
 const Editor = () => {
-  const {
-    otherUser,
-    socketState: socket,
-  } = useContext(SocketContext);
-  
-  const [name, setName] = useState('Untitled');
+  const { otherUser, socketState: socket } = useContext(SocketContext);
   const [quill, setQuill] = useState(null);
 
   useEffect(() => {
@@ -67,24 +68,18 @@ const Editor = () => {
     const q = new Quill(editor, {
       theme: 'snow',
       modules: {
+        syntax: {
+          highlight: (text) => hljs.highlightAuto(text).value,
+        },
         toolbar: toolbarOptions,
       },
     });
     setQuill(q);
   }, []);
 
-  const downloadPdf = async () => {
-    // toast.info('downlading');
-    const delta = quill.getContents();
-    const pdfAsBlob = await pdfExporter.generatePdf(delta);
-    saveAs(pdfAsBlob, `${name}.pdf`);
-  };
-
   return (
     <>
-      <div className='editor slide-left' ref={editorRef}>
-        
-      </div>
+      <div className='editor slide-left' ref={editorRef}></div>
     </>
   );
 };

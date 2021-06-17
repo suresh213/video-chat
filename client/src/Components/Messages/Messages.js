@@ -32,7 +32,7 @@ const Messages = () => {
     socket.on('recieve-message', (data) => {
       setMessages((messages) => [...messages, data]);
         notification.open({
-          message: `New Message from ${otherUserName}`,
+          message: `New Message`,
           description: data.text,
           icon: <MessageOutlined style={{ color: '#108ee9' }} />,
         });
