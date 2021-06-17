@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Skranji:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spinnaker&display=swap');
 .navbar {
   // box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: black;
@@ -17,7 +20,10 @@
       height: 70%;
     }
     h3 {
-      font-size: 22px;
+      // font-family: 'Jua', sans-serif;
+      // font-family: 'Skranji', cursive;
+      font-family: 'Spinnaker', sans-serif;
+      font-size: 25px;
       font-weight: 400;
       // margin-left: 10px;
       margin: auto 0;

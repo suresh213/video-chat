@@ -17,15 +17,12 @@ import Navbar from '../Navbar/Navbar';
 const Home = (props) => {
   const paramsCode = props.location.search;
 
-  const {
-    meetingCode,
-    setMeetingCode,
-    setNewMeet,
-  } = useContext(SocketContext);
-
+  const { meetingCode, setMeetingCode, setNewMeet } = useContext(SocketContext);
 
   useEffect(() => {
     if (paramsCode.length) {
+      console.log(paramsCode.substring(0, 5) )
+      if (paramsCode.substring(0, 5) == '?ref=') return; // for product hunt ref
       setMeetingCode(paramsCode.substring(1));
     }
   }, []);
