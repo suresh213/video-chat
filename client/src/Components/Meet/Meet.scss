@@ -137,17 +137,31 @@
       overflow: hidden;
       .head {
         display: flex;
+        justify-content: space-between;
         align-items: center;
         background-color: white;
         padding: 10px 20px;
         grid-column-gap: 5px;
-        img {
-          width: 30px;
+        .head-title {
+          display: flex;
+          background-color: white;
+          grid-column-gap: 5px;
+          img {
+            width: 30px;
+          }
+          h3 {
+            margin: auto 0;
+            // font-weight: 400;
+            font-size: 20px;
+          }
         }
-        h3 {
-          margin: auto 0;
-          // font-weight: 400;
-          font-size: 20px;
+        .download {
+          display: flex;
+          align-items: center;
+          background: none;
+          border: none;
+          outline: none;
+          cursor: pointer;
         }
       }
     }

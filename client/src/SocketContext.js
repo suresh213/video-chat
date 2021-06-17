@@ -2,10 +2,9 @@ import { useEffect, createContext, useState, useRef } from 'react';
 import Peer from 'simple-peer';
 import { io } from 'socket.io-client';
 import { message } from 'antd';
+import { BACKEND_URL } from './constants';
 const SocketContext = createContext();
 
-const BACKEND_URL = 'https://video-chat-meet-backend.herokuapp.com';
-// const BACKEND_URL='http://localhost:5000'
 const socket = io(BACKEND_URL);
 
 const ContextProvider = ({ children }) => {
@@ -29,7 +28,7 @@ const ContextProvider = ({ children }) => {
   const [notes, setNotes] = useState('');
   const [meetingCode, setMeetingCode] = useState('');
   const [notesOpen, setNotesOpen] = useState(false);
-
+  const [quill, setQuill] = useState(null);
   const [otherUserStream, setOtherUserStream] = useState(null);
   const myVideo = useRef();
   const userVideo = useRef();
@@ -218,6 +217,8 @@ const ContextProvider = ({ children }) => {
         setMyVideoStatus,
         otherUserName,
         setOtherUserName,
+        quill,
+        setQuill,
       }}
     >
       {children}

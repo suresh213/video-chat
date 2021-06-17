@@ -2,8 +2,6 @@ import React, { useState, useEffect, useCallback, useContext } from 'react';
 import 'quill/dist/quill.snow.css';
 import Quill from 'quill';
 import './Editor.css';
-import saveAs from 'file-saver';
-import { pdfExporter } from 'quill-to-pdf';
 import { SocketContext } from '../../SocketContext';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github.css';
@@ -25,12 +23,25 @@ var toolbarOptions = [
 ];
 
 hljs.configure({
-  languages: ['c++', 'java', 'javascript', 'ruby', 'python', 'swift', 'golang','html'],
+  languages: [
+    'c++',
+    'java',
+    'javascript',
+    'ruby',
+    'python',
+    'swift',
+    'golang',
+    'html',
+  ],
 });
 
 const Editor = () => {
-  const { otherUser, socketState: socket } = useContext(SocketContext);
-  const [quill, setQuill] = useState(null);
+  const {
+    otherUser,
+    socketState: socket,
+    quill,
+    setQuill,
+  } = useContext(SocketContext);
 
   useEffect(() => {
     if (!socket || !quill || !otherUser) return;
@@ -74,6 +85,7 @@ const Editor = () => {
         toolbar: toolbarOptions,
       },
     });
+    if (quill) q.setContents(quill.getContents());
     setQuill(q);
   }, []);
 

@@ -114,19 +114,35 @@
 
 .flex-div .right .editor-div .head {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   background-color: white;
   padding: 10px 20px;
   grid-column-gap: 5px;
 }
 
-.flex-div .right .editor-div .head img {
+.flex-div .right .editor-div .head .head-title {
+  display: flex;
+  background-color: white;
+  grid-column-gap: 5px;
+}
+
+.flex-div .right .editor-div .head .head-title img {
   width: 30px;
 }
 
-.flex-div .right .editor-div .head h3 {
+.flex-div .right .editor-div .head .head-title h3 {
   margin: auto 0;
   font-size: 20px;
+}
+
+.flex-div .right .editor-div .head .download {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
 .hide-editor {

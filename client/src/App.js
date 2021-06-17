@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import Video from './Components/Video/Video';
+import Meet from './Components/Meet/Meet';
 import Join from './Components/Join/Join';
 import Home from './Components/Home/Home';
 import { ContextProvider } from './SocketContext';
@@ -21,7 +21,7 @@ function App() {
       <Router>
         <Switch>
           <Route path='/' component={Home} exact></Route>
-          <Route path='/meet' component={Video}></Route>
+          <Route path='/meet' component={Meet}></Route>
           <Route path='/join' component={Join}></Route>
         </Switch>
       </Router>

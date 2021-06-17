@@ -4,15 +4,17 @@ import Editor from '../Editor/Editor';
 import Options from '../Options/Options';
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
-import './Video.css';
+import './Meet.css';
 import homeIcon1 from '../../assets/video-call.png';
 import noteIcon from '../../assets/note2.png';
-
-import { APP_NAME } from '../../constants';
 import Spinner from '../../common/Spinner';
 import Navbar from '../Navbar/Navbar';
+import saveAs from 'file-saver';
+import { pdfExporter } from 'quill-to-pdf';
+import { message } from 'antd';
+import GetAppIcon from '@material-ui/icons/GetApp';
 
-const Video = (props) => {
+const Meet = (props) => {
   const {
     me,
     call,
@@ -31,6 +33,8 @@ const Video = (props) => {
     otherUserStream,
     otherUser,
     otherUserName,
+    quill,
+    setQuill,
   } = useContext(SocketContext);
 
   const [mobileView, setMobileView] = useState(false);
@@ -77,6 +81,13 @@ const Video = (props) => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
   }, [otherUserStream, userVideoStatus, loading]);
 
+  const downloadPdf = async () => {
+    const delta = quill.getContents();
+    const pdfAsBlob = await pdfExporter.generatePdf(delta);
+    message.success('Downloading your whiteboard');
+    saveAs(pdfAsBlob, `Merge-whiteboard.pdf`);
+  };
+
   if (loading) {
     return (
       <div
@@ -115,9 +126,7 @@ const Video = (props) => {
                     ></video>
                   ) : (
                     <div className='video-ref img-bg'>
-                      <img
-                        src={homeIcon1}
-                      />
+                      <img src={homeIcon1} />
                     </div>
                   )}
                   <div className='name'>{name} (you)</div>
@@ -142,9 +151,7 @@ const Video = (props) => {
                   ></video>
                 ) : (
                   <div className='video-ref img-bg'>
-                    <img
-                      src={homeIcon1}
-                    />
+                    <img src={homeIcon1} />
                   </div>
                 )}
                 <div className='name'>{otherUserName}</div>
@@ -160,8 +167,13 @@ const Video = (props) => {
         <div className='right'>
           <div className='editor-div'>
             <div className='head'>
-              <img src={noteIcon} alt='' />
-              <h3>Whiteboard</h3>
+              <div className='head-title'>
+                <img src={noteIcon} alt='' />
+                <h3>Whiteboard</h3>
+              </div>
+              <button className='download' onClick={() => downloadPdf()} title='Download whiteboard'>
+                <GetAppIcon />
+              </button>
             </div>
             <Editor />
           </div>
@@ -171,4 +183,4 @@ const Video = (props) => {
   );
 };
 
-export default Video;
+export default Meet;
