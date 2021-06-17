@@ -21,7 +21,6 @@ const Home = (props) => {
 
   useEffect(() => {
     if (paramsCode.length) {
-      console.log(paramsCode.substring(0, 5) )
       if (paramsCode.substring(0, 5) == '?ref=') return; // for product hunt ref
       setMeetingCode(paramsCode.substring(1));
     }
