@@ -44,12 +44,12 @@
 ### Chat
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/9.png?raw=true)
 
-##### Steps to run in your machine
-## npm i
-## npm run server
-## cd client
-## npm i
-## npm run start
+## Steps to run in your machine
+### npm i
+### npm run server
+### cd client
+### npm i
+### npm run start
 
 
 
