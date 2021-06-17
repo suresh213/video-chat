@@ -1,6 +1,5 @@
 <a href="https://www.producthunt.com/posts/i-meet?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-i-meet" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=300408&theme=light" alt="I-Meet - 1:1 video chat app for online interviews | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-# Video Chat App
-A 1 on 1  video chat app with live editor for online interviews
+# Merge - Video Chat App for Online Interviews
 
 **Project Link** - ***https://merge.netlify.app***
 
