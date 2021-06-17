@@ -2,7 +2,7 @@
 # Video Chat App
 A 1 on 1  video chat app with live editor for online interviews
 
-**Project Link** - ***https://i-meet.netlify.app***
+**Project Link** - ***https://merge.netlify.app***
 
 ## Features
 
@@ -21,17 +21,29 @@ A 1 on 1  video chat app with live editor for online interviews
 ### Home
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/1.png?raw=true)
 
-### Meet Screen
+### Join Screen
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/2.png?raw=true)
 
-### Editor
+### Meet Screen
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/3.png?raw=true)
 
-### Notes
+### Request from other user
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/4.png?raw=true)
 
-### Chat
+### Users on call
 ![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/5.png?raw=true)
 
+### Whiteboard(Live)
+![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/6.png?raw=true)
 
-#### If you like this project, give repo a ⭐
+### Options
+![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/7.png?raw=true)
+
+### Notes
+![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/8.png?raw=true)
+
+### Chat
+![alt text](https://github.com/suresh213/video-chat/blob/master/Screenshots/9.png?raw=true)
+
+
+#### Hope you liked this project, dont forget to ⭐ the repo.
