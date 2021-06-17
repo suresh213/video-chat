@@ -79,6 +79,7 @@ const Meet = (props) => {
 
   useEffect(() => {
     if (userVideo.current) userVideo.current.srcObject = otherUserStream;
+    // console.log(otherUserStream)
   }, [otherUserStream, userVideoStatus, loading]);
 
   const downloadPdf = async () => {
