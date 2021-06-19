@@ -172,7 +172,11 @@ const Meet = (props) => {
                 <img src={noteIcon} alt='' />
                 <h3>Whiteboard</h3>
               </div>
-              <button className='download' onClick={() => downloadPdf()} title='Download whiteboard'>
+              <button
+                className='download'
+                onClick={() => downloadPdf()}
+                title='Download whiteboard'
+              >
                 <GetAppIcon />
               </button>
             </div>
